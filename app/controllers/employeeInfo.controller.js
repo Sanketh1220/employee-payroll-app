@@ -27,7 +27,7 @@ exports.create = (req, res) => {
         });
 };
 
-// Retrieve and return all employee's infor from the database.
+// Retrieve and return all employee's info from the database.
 exports.findAll = (req, res) => {
     EmployeeInfo.find()
     .then(employeeInfo => {
@@ -61,7 +61,7 @@ exports.findOne = (req, res) => {
     });
 };
 
-// Update a note identified by the noteId in the request
+// Update employee info identified by the employeeInfoId in the request
 exports.update = (req, res) => {
     // Validate Request
     if(!req.body) {
@@ -70,7 +70,7 @@ exports.update = (req, res) => {
         });
     }
 
-    // Find note and update it with the request body
+    // Find employee info using ID and update it with the request body
     EmployeeInfo.findByIdAndUpdate(req.params.employeeInfoId, {
         firstName: req.body.firstName || "Untitled First Name",
         lastName: req.body.lastName,
@@ -96,7 +96,7 @@ exports.update = (req, res) => {
     });
 };
 
-// Delete a note with the specified noteId in the request
+// Delete a employee info with the specified employeeInfoId in the request
 exports.delete = (req, res) => {
     EmployeeInfo.findByIdAndRemove(req.params.employeeInfoId)
     .then(employeeInfo => {

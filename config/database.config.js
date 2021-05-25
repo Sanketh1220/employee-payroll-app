@@ -1,13 +1,17 @@
-// module.exports = {
-//     url: 'mongodb://localhost:27017/easy-notes',
-// }
-
 const mongoose = require("mongoose");
 
 module.exports = () => {
-    
+
     const url = 'mongodb://localhost:27017/employeeInfo';
 
+    /**
+     * included to remove DeprecationWarning: Mongoose: `findOneAndUpdate()` and `findOneAndDelete()` 
+     * without the `useFindAndModify` option set to false are deprecated.
+     */
+    mongoose.set('useNewUrlParser', true);
+    mongoose.set('useFindAndModify', false);
+    mongoose.set('useCreateIndex', true);
+    mongoose.set('useUnifiedTopology', true);
 
     // gives a native code
     mongoose.Promise = global.Promise;
