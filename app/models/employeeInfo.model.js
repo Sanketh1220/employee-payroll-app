@@ -3,24 +3,27 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR =  10;
 
-const EmployeeInfoSchema = mongoose.Schema({
-    required: ["firstName", "lastName", "email", "password"],
+const EmployeeInfoSchema = new mongoose.Schema({
+    // required: ["firstName", "lastName", "email", "password"],
     firstName: {
         type: String,
-        required: true,
-        test: /^[a-zA-Z ]{2,30}$/,
+        required: true
+        // test: /^[a-zA-Z ]{2,30}$/,
     },
     lastName: {
         type: String,
         required: true,
-        test: /^[a-zA-Z ]{2,30}$/
+        test: /^[a-zA-Z]{2,30}$/
     },
     email: {
         type: String,
-        required: true,
-        test: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+        required: true
+        // test: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     },
-    password: String
+    password: {
+        type: String,
+        required: true
+    },
 }, {
     // generates the time stamp the data is been added
     timestamps: true
