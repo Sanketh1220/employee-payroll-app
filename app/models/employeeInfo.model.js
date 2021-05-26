@@ -7,18 +7,18 @@ const EmployeeInfoSchema = new mongoose.Schema({
     // required: ["firstName", "lastName", "email", "password"],
     firstName: {
         type: String,
-        required: true
-        // test: /^[a-zA-Z ]{2,30}$/,
+        required: true,
+        validate: /^[a-zA-Z ]{2,30}$/
     },
     lastName: {
         type: String,
         required: true,
-        test: /^[a-zA-Z]{2,30}$/
+        validate: /^[a-zA-Z]{2,30}$/
     },
     email: {
         type: String,
-        required: true
-        // test: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+        required: true,
+        validate: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     },
     password: {
         type: String,
