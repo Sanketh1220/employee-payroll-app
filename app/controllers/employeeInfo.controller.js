@@ -45,7 +45,7 @@ exports.findOne = (req, res) => {
     .then(employeeInfo => {
         if(!employeeInfo) {
             return res.status(404).send({
-                message: "Note not found with id " + req.params.employeeInfoId
+                message: "Info not found with id " + req.params.employeeInfoId
             });            
         }
         res.send(employeeInfo);
