@@ -1,37 +1,37 @@
 const EmployeeInfo = require('../models/employeeInfo.model.js');
 
-EmployeeInfoSchema.pre('save', function (next) {
-    var employee = this;
+// EmployeeInfoSchema.pre('save', function (next) {
+//     var employee = this;
 
-    // only hash the password if it has been modified (or is new)
-    if (!employee.isModified('password')) return next();
+//     // only hash the password if it has been modified (or is new)
+//     if (!employee.isModified('password')) return next();
 
-    // generate a salt
-    bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
-        if (err) return next(err);
+//     // generate a salt
+//     bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
+//         if (err) return next(err);
 
-        // hash the password using our new salt
-        bcrypt.hash(employee.password, salt, function (error, hash) {
-            if (error) return next(error);
+//         // hash the password using our new salt
+//         bcrypt.hash(employee.password, salt, function (error, hash) {
+//             if (error) return next(error);
 
-            // override the cleartext password with the hashed one
-            employee.password = hash;
-            next();
-        });
-    });
+//             // override the cleartext password with the hashed one
+//             employee.password = hash;
+//             next();
+//         });
+//     });
 
 
-});
+// });
 
-EmployeeInfoSchema.methods.comparePassword = function (candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
-        if (err) return cb(err);
-        cb(null, isMatch);
-    });
-};
+// EmployeeInfoSchema.methods.comparePassword = function (candidatePassword, cb) {
+//     bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
+//         if (err) return cb(err);
+//         cb(null, isMatch);
+//     });
+// };
 
 module.exports = class EmployeeInfoService{
-    
+
     static async getAllEmployeeInfo() {
         try {
             const allEmployeeInfo = await EmployeeInfo.find();
@@ -44,10 +44,10 @@ module.exports = class EmployeeInfoService{
     static async createEmployeeInfo(data) {
         try {
             const newEmployee = {
-                firstName: req.body.firstName || "Untitled First Name",
-                lastName: req.body.lastName,
-                email: req.body.email,
-                password: req.body.password
+                firstName: data.firstName,
+                lastName: data.lastName,
+                email: data.email,
+                password: data.password
             }
             const response = await new EmployeeInfo(newEmployee).save();
             return response;
@@ -58,7 +58,7 @@ module.exports = class EmployeeInfoService{
 
     static async getEmployeeInfoById(employeeId) {
         try {
-            const singleEmployeeInfo = await EmployeeInfo.findById({_id: employeeId});
+            const singleEmployeeInfo = await EmployeeInfo.findById({employeeInfoId: employeeId});
             return singleEmployeeInfo;
         } catch (error) {
             console.log('Employee info not found.' + error);

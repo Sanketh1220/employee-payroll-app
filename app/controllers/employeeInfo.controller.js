@@ -20,17 +20,19 @@ module.exports = class EmployeeInfo {
                 res.status(404).send({
                     message: "Employee info content cannot be empty"
                 });
+            res.send(employeeInfo);
             }
         } catch (error) {
             res.status(500) ({
                 message: error.message || "Some error occured while getting the employee info"
             });
+            // res.status(500).json({error: error});
         }
     }
 
     static async apiGetAllEmployeeInfoById(req, res){
         try {
-            let id = req.params._id || {};
+            let id = req.params.id || {};
             const employeeInfo = await EmployeeInfoService.getEmployeeInfoById(id);
             res.send(employeeInfo);
         } catch (error) {
@@ -64,7 +66,7 @@ module.exports = class EmployeeInfo {
 
     static async apiDeleteEmployeeInfo(req, res) {
         try {
-            const employeeId = req.params._id;
+            const employeeId = req.params.id;
             const deleteEmployeeInfo = await EmployeeInfoService.deleteEmployeeInfo(employeeId);
             res.send({message: "Employee info deleted successfully!" + employeeId});
         } catch (error) {

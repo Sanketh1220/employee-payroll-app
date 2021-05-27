@@ -1,7 +1,7 @@
-// const EmployeeController = require('../controllers/employeeInfo.controller.js')
+const EmployeeController = require('../controllers/employeeInfo.controller.js')
 
 module.exports = (app) => {
-    const EmployeeController = require('../controllers/employeeInfo.controller.js');
+    // const EmployeeController = require('../controllers/employeeInfo.controller.js');
 
      //create new info
      app.post('/employeeInfo/employee', EmployeeController.apiCreateEmployeeInfo);
@@ -10,14 +10,14 @@ module.exports = (app) => {
      app.get('/employeeInfo/employee', EmployeeController.apiGetAllEmployeeInfo);
  
      // retrieve one employee info using ID
-     app.get('/employeeInfo/:employeeInfoId', EmployeeController.apiGetAllEmployeeInfoById);
+     app.get('/employeeInfo/employee/:employeeInfoId', EmployeeController.apiGetAllEmployeeInfoById);
  
      // updating a employeeInfo using ID
      app.put('/employeeInfo/employee/info/update/:employeeInfoId', EmployeeController.apiUpdateEmployeeInfo);
  
      // delete a employee info using ID
      app.delete('/employeeInfo/employee/:employeeInfoId', EmployeeController.apiDeleteEmployeeInfo);
-
+}
     // //create new info
     // app.post('/employeeInfo/employee', employeeInfo.create);
 
@@ -32,4 +32,4 @@ module.exports = (app) => {
 
     // // delete a employee info using ID
     // app.delete('/employeeInfo/employee/:employeeInfoId', employeeInfo.delete)
-}
+//}

@@ -61,4 +61,4 @@ EmployeeInfoSchema.methods.comparePassword = function (candidatePassword, cb) {
 };
 
 // exporting the model 
-module.exports = EmployeeInfo = mongoose.model('EmployeeInfo', EmployeeInfoSchema);
+module.exports = mongoose.model('EmployeeInfo', EmployeeInfoSchema);
