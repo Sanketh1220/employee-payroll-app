@@ -31,6 +31,7 @@ EmployeeInfoSchema.methods.comparePassword = function (candidatePassword, cb) {
 };
 
 module.exports = class EmployeeInfoService{
+    
     static async getAllEmployeeInfo() {
         try {
             const allEmployeeInfo = await EmployeeInfo.find();

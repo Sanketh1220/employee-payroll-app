@@ -1,7 +1,19 @@
 const EmployeeInfoService = require('../services/employeeInfo.service.js');
 
 module.exports = class EmployeeInfo {
-    static async apiGetAllEmployeeInfo(req, res, next) {
+
+    static async apiCreateEmployeeInfo(req, res) {
+        try {
+            const createEmployeeInfo = await EmployeeInfoService.createEmployeeInfo(req.body);
+            res.send(createEmployeeInfo);
+        } catch (error) {
+            res.status(500) ({
+                message: error.message || "Some error occured while creating the employee info"
+            });
+        }
+    }
+
+    static async apiGetAllEmployeeInfo(req, res) {
         try {
             const employeeInfo = await EmployeeInfoService.getAllEmployeeInfo();
             if(!employeeInfo){
@@ -11,7 +23,53 @@ module.exports = class EmployeeInfo {
             }
         } catch (error) {
             res.status(500) ({
-                message: error.message || "Some error occured while creating the employee info"
+                message: error.message || "Some error occured while getting the employee info"
+            });
+        }
+    }
+
+    static async apiGetAllEmployeeInfoById(req, res){
+        try {
+            let id = req.params._id || {};
+            const employeeInfo = await EmployeeInfoService.getEmployeeInfoById(id);
+            res.send(employeeInfo);
+        } catch (error) {
+            res.status(500) ({
+                message: error.message || "Some error occured while getting single employee info"
+            });
+        }
+    }
+
+    static async apiUpdateEmployeeInfo(req, res) {
+        try {
+            const employee = {}
+            employee.firstName = req.body.firstName;
+            employee.lastName = req.body.lastName;
+            employee.email = req.body.email;
+            employee.password = req.body.password;
+
+            const updateEmployeeInfo = await EmployeeInfoService.updateEmployeeInfo(employee);
+
+            if(updateEmployeeInfo.ModifiedCount === 0) {
+                throw new Error("Unable to update employee info, error occured");
+            }
+
+            res.send(updateEmployeeInfo);
+        } catch (error) {
+            res.status(500) ({
+                message: error.message || "Some error occured while updating employee info"
+            });
+        }
+    }
+
+    static async apiDeleteEmployeeInfo(req, res) {
+        try {
+            const employeeId = req.params._id;
+            const deleteEmployeeInfo = await EmployeeInfoService.deleteEmployeeInfo(employeeId);
+            res.send({message: "Employee info deleted successfully!" + employeeId});
+        } catch (error) {
+            res.status(500) ({
+                message: error.message || "Some error occured while deleting employee info"
             });
         }
     }
