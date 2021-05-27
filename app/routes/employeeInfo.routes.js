@@ -13,6 +13,6 @@ module.exports = (app) => {
     // updating a employeeInfo using ID
     app.put('/employeeInfo/employee/info/update/:employeeInfoId', employeeInfo.update);
 
-    // delete a employeeinfo using ID
+    // delete a employee info using ID
     app.delete('/employeeInfo/employee/:employeeInfoId', employeeInfo.delete)
 }
