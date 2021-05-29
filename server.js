@@ -1,11 +1,13 @@
 const express = require('express');
 
-
 // required config file
-const dbConfig = require('./config/database.config.js');
+const dbConfig = require('./config/databaseConfig');
 
 // creating express app
 const app = express();
+
+require('./app/routes/employeeInfoRoutes.js')(app);
+
 
 // parsing the requests of content
 app.use(express.urlencoded({
@@ -19,8 +21,6 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send("<h1>Hey! Welcome to employee payroll app.</h1>");
 });
-
-require('./app/routes/employeeInfo.routes.js')(app);
 
 dbConfig().then(() => {
     app.listen(3000, function () {
