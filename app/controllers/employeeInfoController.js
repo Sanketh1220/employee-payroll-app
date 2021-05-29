@@ -2,7 +2,7 @@ const EmployeeInfoService = require('../services/employeeInfoService');
 
 class EmployeeInfoController {
 
-    createApi  (req, res)  {
+    createApi(req, res) {
         const employeeData = {
             firstName: req.firstName,
             lastName: req.lastName,
@@ -13,40 +13,34 @@ class EmployeeInfoController {
         const response = {}
 
         EmployeeInfoService.createEmployeeInfo(employeeData, (error, data) => {
-            if (error) {
-                return res.status(500).send({
+            return ((error) ?
+                res.status(500).send({
                     success: response.success = false,
                     message: response.message = "Some error occurred while creating employee info"
-                })
-            }
-
-            res.send({
-                success: response.success = true,
-                message: response.message = "Employee info added!",
-                data: response.data = data
-            })
+                }) :
+                res.send({
+                    success: response.success = true,
+                    message: response.message = "Employee info added!",
+                    data: response.data = data
+                }));
         });
     }
 
-    // getAllDataApi (req, res) {
-
-    //     const response = {}
-
-    //     EmployeeInfoService.getAllEmployeeInfo(employeeData, (error, data) => {
-    //         if(error) {
-    //             return res.status(500).send ({
-    //                 success: response.success = false,
-    //                 message: response.message = "Some error occured while getting employee info"
-    //             })
-    //         }
-
-    //         res.send({
-    //             success: response.success = true,
-    //             message: response.message = "Successfully retrieved data!",
-    //             data: response.data = data
-    //         })
-    //     })
-    // }
+    getAllDataApi(req, res) {
+        const response = {}
+        EmployeeInfoService.getAllEmployeeInfo(employeeData, (error, data) => {
+            return ((error) ?
+                res.status(500).send({
+                    success: response.success = false,
+                    message: response.message = "Some error occurred while creating employee info"
+                }) :
+                res.send({
+                    success: response.success = true,
+                    message: response.message = "Employee info added!",
+                    data: response.data = data
+                }));
+        });
+    }
 }
 
 module.exports = new EmployeeInfoController();

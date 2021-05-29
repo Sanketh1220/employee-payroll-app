@@ -2,8 +2,9 @@ const EmployeeInfoModel = require('../models/employeeInfoModel');
 
 class EmployeeInfoService {
 
+    //correct
     createEmployeeInfo (employeeInfoData, callBack) {
-        EmployeeInfoModel.create(employeeInfoData, (error, data) => {
+        EmployeeInfoModel.createInfo(employeeInfoData, (error, data) => {
             if(error) {
                 return callBack(error.null);
             }
@@ -11,8 +12,19 @@ class EmployeeInfoService {
         })
     }
 
+    //correct
     getAllEmployeeInfo (callBack) {
         EmployeeInfoModel.findAll((error, data) => {
+            if(error){
+                return callBack(error, null);
+            }
+            return callBack(null, data);
+        })
+    }
+
+    //tentative
+    deleteEmployeeInfo (callBack) {
+        EmployeeInfoModel.deleteById(employeeInfoData ,(error, data) => {
             if(error){
                 return callBack(error, null);
             }
@@ -75,5 +87,3 @@ module.exports = new EmployeeInfoService();
     //         console.log('Failed to delete employee info' + error);
     //     }
     // }
-
-

@@ -63,7 +63,9 @@ EmployeeInfoSchema.methods.comparePassword = function (candidatePassword, cb) {
 const EmployeeInfoModel = mongoose.model('EmployeeInfo', EmployeeInfoSchema);
 
 class EmployeeModel {
-    create (employeeInfoData, callBack) {
+
+    //correct
+    createInfo (employeeInfoData, callBack) {
         const employee = new EmployeeInfoModel ({
             firstName: employeeInfoData.firstName,
             lastName: employeeInfoData.lastName,
@@ -77,6 +79,41 @@ class EmployeeModel {
             }
             return callBack(null, data);
         });
+    }
+
+    //correct
+    findAll (callBack) {
+        EmployeeInfoModel.find({}, (error, data) => {
+            if(error){
+                return callBack(error, null);
+            }
+            return callBack(null, data);
+        });   
+    }
+
+    //correct
+    updateInfo (employeeData, callBack) {
+        EmployeeInfoModel.findByIdAndUpdate( employeeData.employeeId, {
+            firstName: employeeData.firstName,
+            lastName: employeeData.lastName,
+            email: employeeData.email,
+            password: employeeData.password
+        }, {new : true}, (error, data) => {
+            if(error) {
+                return callBack(error, null);
+            }
+            return callBack(null, data);
+        });
+    }
+
+    //correct
+    deleteById (employeeData, callBack) {
+        EmployeeInfoModel.findByIdAndRemove(employeeData.employeeInfoId, (error, data) => {
+            if(error){
+                return callBack(error, null);
+            }
+            return callBack(null, data);
+        } )
     }
 }
 
