@@ -2,16 +2,16 @@ const EmployeeInfoModel = require('../models/employeeInfoModel');
 
 class EmployeeInfoService {
 
-    create = (employeeInfoData, callBack) => {
+    createEmployeeInfo (employeeInfoData, callBack) {
         EmployeeInfoModel.create(employeeInfoData, (error, data) => {
             if(error) {
-                return callBack(errror.null);
+                return callBack(error.null);
             }
             return callBack(null, data);
         })
     }
 
-    findAll = (callBack) => {
+    getAllEmployeeInfo (callBack) {
         EmployeeInfoModel.findAll((error, data) => {
             if(error){
                 return callBack(error, null);
@@ -22,6 +22,7 @@ class EmployeeInfoService {
 }
 
 module.exports = new EmployeeInfoService();
+
     // static async getAllEmployeeInfo() {
     //     try {
     //         const allEmployeeInfo = await EmployeeInfo.find();

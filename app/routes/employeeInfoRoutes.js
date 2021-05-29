@@ -1,19 +1,23 @@
-const EmployeeController = require('../controllers/employeeInfoController.js')
+const employeeController = require('../controllers/employeeInfoController.js')
 
 module.exports = (app) => {
 
      //create new info
-     app.post('/employeeInfo/employee', EmployeeController.create);
+     app.post('/employeePayroll', employeeController.createApi);
 
-     // retrieve all employeeInfo
-     app.get('/employeeInfo/employee', EmployeeController.apiGetAllEmployeeInfo);
+     // app.post('/user/all', function(req, res){
+     //      employeeController.createApi
+     //    });
+
+//      // retrieve all employeeInfo
+//      app.get('/employeePayroll', employeeController.getAllDataApi);
  
-     // retrieve one employee info using ID
-     app.get('/employeeInfo/employee/:employeeInfoId', EmployeeController.apiGetAllEmployeeInfoById);
+//      // retrieve one employee info using ID
+//      app.get('/employeePayroll/:employeeInfoId', employeeController.apiGetAllEmployeeInfoById);
  
-     // updating a employeeInfo using ID
-     app.put('/employeeInfo/employee/info/update/:employeeInfoId', EmployeeController.apiUpdateEmployeeInfo);
+//      // updating a employeeInfo using ID
+//     app.put('/employeePayroll/:employeeInfoId', employeeController.apiUpdateEmployeeInfo);
  
-     // delete a employee info using ID
-     app.delete('/employeeInfo/employee/:employeeInfoId', EmployeeController.apiDeleteEmployeeInfo);
+//      // delete a employee info using ID
+//      app.delete('/employeePayroll/:employeeInfoId', employeeController.apiDeleteEmployeeInfo);
 }

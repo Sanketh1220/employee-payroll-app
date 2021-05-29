@@ -1,6 +1,9 @@
 const express = require('express');
+require('dotenv').config();
+
 
 // required config file
+// const dbConfig = require('./config/databaseConfig');
 const dbConfig = require('./config/databaseConfig');
 
 // creating express app
@@ -22,8 +25,8 @@ app.get('/', (req, res) => {
     res.send("<h1>Hey! Welcome to employee payroll app.</h1>");
 });
 
-dbConfig().then(() => {
-    app.listen(3000, function () {
-        console.log("Server is up and running on port 3000")
-    });
+// dbConfig().then(() => {
+app.listen(3000, function () {
+    console.log("Server is up and running")
 });
+// });

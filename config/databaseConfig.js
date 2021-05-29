@@ -1,10 +1,7 @@
 require('dotenv').config();
 const mongoose = require("mongoose");
 
-module.exports = () => {
-
-    const url = 'mongodb://localhost:27017/employeeInfo';
-
+function databaseConnection() {
     /**
      * included to remove DeprecationWarning: Mongoose: `findOneAndUpdate()` and `findOneAndDelete()` 
      * without the `useFindAndModify` option set to false are deprecated.
@@ -13,18 +10,16 @@ module.exports = () => {
     mongoose.set('useFindAndModify', false);
     mongoose.set('useCreateIndex', true);
     mongoose.set('useUnifiedTopology', true);
+    mongoose.connect(process.env.URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+    });
 
-    // gives a native code
-    mongoose.Promise = global.Promise;
-
-    // return mongoose.connect(process.env.URL, {
-    return mongoose.connect(url, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }).then(() => {
-        console.log("Connection is successfully established!");
-    }).catch(error => {
-        console.log("Error, Connection establishment failed", error);
-        process.exit();
+    return mongoose.connection
+    .once('open', () => console.log('Mongo database Connected'))
+    .on('error', (error)=> {
+        console.log("Eroor found",error)
     });
 }
+
+module.exports = databaseConnection;

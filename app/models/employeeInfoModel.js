@@ -63,7 +63,7 @@ EmployeeInfoSchema.methods.comparePassword = function (candidatePassword, cb) {
 const EmployeeInfoModel = mongoose.model('EmployeeInfo', EmployeeInfoSchema);
 
 class EmployeeModel {
-    create = (employeeInfoData, callBack) => {
+    create (employeeInfoData, callBack) {
         const employee = new EmployeeInfoModel ({
             firstName: employeeInfoData.firstName,
             lastName: employeeInfoData.lastName,

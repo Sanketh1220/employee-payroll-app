@@ -1,46 +1,65 @@
-// const {getLogger} = require('nodemailer/lib/shared');
 const EmployeeInfoService = require('../services/employeeInfoService');
 
 class EmployeeInfoController {
 
-    create = (req, res) => {
+    createApi  (req, res)  {
         const employeeData = {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            password: req.body.password
+            firstName: req.firstName,
+            lastName: req.lastName,
+            email: req.email,
+            password: req.password
         }
 
-        const employeeResponse = {
-        }
+        const response = {}
 
-        EmployeeInfoService.create(employeeData, (error, data) => {
+        EmployeeInfoService.createEmployeeInfo(employeeData, (error, data) => {
             if (error) {
-                // logger.error("Some error occurred while creating employee info")
                 return res.status(500).send({
-                    success: employeeResponse.success = false,
-                    message: employeeResponse.message = "Some error occurred while creating employee info"
+                    success: response.success = false,
+                    message: response.message = "Some error occurred while creating employee info"
                 })
             }
 
-            // logger.info("Employee info successfully added!")
             res.send({
-                success: employeeResponse.success = true,
-                message: employeeResponse.message = "Employee info added!",
-                data: employeeResponse.data = data
+                success: response.success = true,
+                message: response.message = "Employee info added!",
+                data: response.data = data
             })
         });
     }
+
+    // getAllDataApi (req, res) {
+
+    //     const response = {}
+
+    //     EmployeeInfoService.getAllEmployeeInfo(employeeData, (error, data) => {
+    //         if(error) {
+    //             return res.status(500).send ({
+    //                 success: response.success = false,
+    //                 message: response.message = "Some error occured while getting employee info"
+    //             })
+    //         }
+
+    //         res.send({
+    //             success: response.success = true,
+    //             message: response.message = "Successfully retrieved data!",
+    //             data: response.data = data
+    //         })
+    //     })
+    // }
 }
 
 module.exports = new EmployeeInfoController();
+
+
+
 // static async apiCreateEmployeeInfo(req, res) {
 //     try {
 //         const createEmployeeInfo = await EmployeeInfoService.createEmployeeInfo(req.body);
 //         res.send(createEmployeeInfo);
 //     } catch (error) {
 //         res.status(500) ({
-//             message: error.message || "Some error occured while creating the employee info"
+//             message: error.message || "Some error occurred while creating the employee info"
 //         });
 //     }
 // }
@@ -86,13 +105,13 @@ module.exports = new EmployeeInfoController();
 //         const updateEmployeeInfo = await EmployeeInfoService.updateEmployeeInfo(employee);
 
 //         if(updateEmployeeInfo.ModifiedCount === 0) {
-//             throw new Error("Unable to update employee info, error occured");
+//             throw new Error("Unable to update employee info, error occurred");
 //         }
 
 //         res.send(updateEmployeeInfo);
 //     } catch (error) {
 //         res.status(500) ({
-//             message: error.message || "Some error occured while updating employee info"
+//             message: error.message || "Some error occurred while updating employee info"
 //         });
 //     }
 // }
@@ -104,7 +123,11 @@ module.exports = new EmployeeInfoController();
 //         res.send({message: "Employee info deleted successfully!" + employeeId});
 //     } catch (error) {
 //         res.status(500) ({
-//             message: error.message || "Some error occured while deleting employee info"
+//             message: error.message || "Some error occurred while deleting employee info"
 //         });
 //     }
 // }
+
+// logger.error("Some error occurred while creating employee info")(19)
+//const EmployeeInfoService = require('../services/employeeInfoService');(1)
+// logger.info("Employee info successfully added!")(25)
