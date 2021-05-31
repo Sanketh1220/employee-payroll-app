@@ -2,7 +2,6 @@
 const mongoose = require('mongoose');
 const Joi = require('express-joi-validation');
 const bcrypt = require('bcrypt');
-// const EmployeeInfoController = require('../controllers/employeeInfoController');
 const SALT_WORK_FACTOR =  10;
 
 const EmployeeInfoSchema = new mongoose.Schema({

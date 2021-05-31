@@ -4,10 +4,10 @@ class EmployeeInfoController {
 
     createApi(req, res) {
         const employeeData = {
-            firstName: req.firstName,
-            lastName: req.lastName,
-            email: req.email,
-            password: req.password
+            firstName: req.params.firstName,
+            lastName: req.params.lastName,
+            email: req.params.email,
+            password: req.params.password
         }
 
         const response = {}
@@ -18,6 +18,7 @@ class EmployeeInfoController {
                     success: response.success = false,
                     message: response.message = "Some error occurred while creating employee info"
                 }) :
+
                 res.send({
                     success: response.success = true,
                     message: response.message = "Employee info added!",
@@ -26,20 +27,76 @@ class EmployeeInfoController {
         });
     }
 
-    getAllDataApi(req, res) {
+    updateApi(req, res) {
+        const employeeData = {
+            firstName: req.firstName,
+            lastName: req.lastName,
+            email: req.email,
+            password: req.password
+        }
+
         const response = {}
-        EmployeeInfoService.getAllEmployeeInfo(employeeData, (error, data) => {
+
+        EmployeeInfoService.updateEmployeeInfo(employeeData, (error, data) => {
             return ((error) ?
                 res.status(500).send({
                     success: response.success = false,
-                    message: response.message = "Some error occurred while creating employee info"
+                    message: response.message = "Some error occurred while updating employee info"
+                }) :
+
+                res.send({
+                    success: response.success = true,
+                    message: response.message = "Employee info updated!",
+                    data: response.data = data
+                }));
+        })
+    }
+
+    getAllDataApi(req, res) {
+        const response = {}
+        EmployeeInfoService.getAllEmployeeInfo( (error, data) => {
+            console.log(error);
+            return ((error) ?
+                res.status(500).send({
+                    success: response.success = false,
+                    message: response.message = "Some error occurred while retrieving employee info"
                 }) :
                 res.send({
                     success: response.success = true,
-                    message: response.message = "Employee info added!",
+                    message: response.message = "Employee info successfully retrieved!",
                     data: response.data = data
                 }));
         });
+    }
+
+    deleteByIdApi(req, res) {
+        const employeeData =  {
+            employeeId : req.id
+        }
+        // const employeeData = {
+        //     firstName: req.firstName,
+        //     lastName: req.lastName,
+        //     email: req.email,
+        //     password: req.password
+        // }
+
+
+        const response = {}
+
+        EmployeeInfoService.deleteEmployeeInfo(employeeData, (error, data) => {
+            console.log(error);
+            return ((error) ?
+                res.status(500).send({
+                    success: response.success = false,
+                    message: response.message = "Some error occurred while deleting employee info",
+
+                }) :
+                res.send({
+                    success: response.success = true,
+                    message: response.message = "Employee info Deleted!",
+                    data: response.data = data
+                }));
+        })
     }
 }
 

@@ -3,8 +3,8 @@ const EmployeeInfoModel = require('../models/employeeInfoModel');
 class EmployeeInfoService {
 
     //correct
-    createEmployeeInfo (employeeInfoData, callBack) {
-        EmployeeInfoModel.createInfo(employeeInfoData, (error, data) => {
+    createEmployeeInfo (employeeData, callBack) {
+        EmployeeInfoModel.createInfo(employeeData, (error, data) => {
             if(error) {
                 return callBack(error.null);
             }
@@ -23,7 +23,17 @@ class EmployeeInfoService {
     }
 
     //tentative
-    deleteEmployeeInfo (callBack) {
+    updateEmployeeInfo(employeeData, callBack) {
+        EmployeeInfoModel.updateInfo(employeeData, (error, data) => {
+            if(error) {
+                return callBack(error.null);
+            }
+            return callBack(null, data);
+        })
+    }
+
+    //tentative
+    deleteEmployeeInfo (employeeInfoData, callBack) {
         EmployeeInfoModel.deleteById(employeeInfoData ,(error, data) => {
             if(error){
                 return callBack(error, null);

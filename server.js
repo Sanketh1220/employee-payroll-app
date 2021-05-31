@@ -1,7 +1,6 @@
 const express = require('express');
 require('dotenv').config();
 
-
 // required config file
 // const dbConfig = require('./config/databaseConfig');
 const dbConfig = require('./config/databaseConfig');
@@ -10,7 +9,6 @@ const dbConfig = require('./config/databaseConfig');
 const app = express();
 
 require('./app/routes/employeeInfoRoutes.js')(app);
-
 
 // parsing the requests of content
 app.use(express.urlencoded({
@@ -29,4 +27,3 @@ app.get('/', (req, res) => {
 app.listen(3000, function () {
     console.log("Server is up and running")
 });
-// });
