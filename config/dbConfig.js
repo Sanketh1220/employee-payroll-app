@@ -1,4 +1,11 @@
+/**
+ * requiring 'dotenv' package
+ */
 require('dotenv').config();
+
+/**
+ * constant variable created to require mongoose package and assigned to variable
+ */
 const mongoose = require("mongoose");
 
 function databaseConnection() {
@@ -10,7 +17,11 @@ function databaseConnection() {
     mongoose.set('useNewUrlParser', true);
     mongoose.set('useFindAndModify', false);
     mongoose.set('useUnifiedTopology', true);
-    mongoose.connect(process.env.URL, {
+
+    /**
+     * connecting to mongoose using URL imported from env file
+     */
+    mongoose.connect(env.URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
     });
@@ -18,8 +29,12 @@ function databaseConnection() {
     return mongoose.connection
     .once('open', () => console.log('Mongo database Connected'))
     .on('error', (error)=> {
-        console.log("Eroor found",error)
+        console.log("Error found",error)
+        
     });
 }
 
+/**
+ * exporting function to utilize where it is imported
+ */
 module.exports = databaseConnection;

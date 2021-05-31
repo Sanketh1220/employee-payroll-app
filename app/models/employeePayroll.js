@@ -1,16 +1,23 @@
-// requring the mongoose package to connect to mongoDB database
+/**
+ * requiring the mongoose package to connect to mongoDB database
+ */
 const mongoose = require('mongoose');
-const Joi = require('express-joi-validation');
+
+/**
+ * requiring package "bcrypt" to authenticate the password
+ */
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR =  10;
 
+/**
+ * schema created to store data as such into database
+ */
 const EmployeeInfoSchema = new mongoose.Schema({
     firstName: {
         type: String,
         required: true,
         validate: /^[a-zA-Z ]{2,30}$/ 
     },
-    // Joi.string().regex(/^[a-zA-Z ]{2,30}$/).required(),
     lastName: {
         type: String,
         required: true,
@@ -58,13 +65,26 @@ EmployeeInfoSchema.methods.comparePassword = function (candidatePassword, cb) {
     });
 };
 
-// exporting the model 
+/**
+ * created constant variable to assign schema
+ */
 const EmployeeInfoModel = mongoose.model('EmployeeInfo', EmployeeInfoSchema);
 
+/**
+ * created a class to write functions
+ */
 class EmployeeModel {
 
-    //correct
+    /**
+     * function written to create data into database
+     * using the requested by 
+     * @param {*} A valid employeeInfoData is expected
+     * @param {*} callBack 
+     */
     createInfo (employeeInfoData, callBack) {
+        /**
+         * created a object to insert into database using info got from service
+         */
         const employee = new EmployeeInfoModel ({
             firstName: employeeInfoData.firstName,
             lastName: employeeInfoData.lastName,
@@ -72,6 +92,9 @@ class EmployeeModel {
             password: employeeInfoData.password
         });
 
+        /**
+         * creating a data of employee info using save() method  of mongoose
+         */
         employee.save({}, (error, data) => {
             if(error){
                 return callBack(error, null);
@@ -80,8 +103,14 @@ class EmployeeModel {
         });
     }
 
-    //correct
+    /**
+     * function written to retrieve all data from database
+     * @param {*} callBack 
+     */
     findAll (callBack) {
+        /**
+         * finding a data of employee info using find() method  of mongoose
+         */
         EmployeeInfoModel.find({}, (error, data) => {
             if(error){
                 return callBack(error, null);
@@ -90,8 +119,15 @@ class EmployeeModel {
         });   
     }
 
-    //correct
+    /**
+     * function written to update info into database
+     * @param {*} A valid employeeData is expected
+     * @param {*} callBack 
+     */
     updateInfo (employeeData, callBack) {
+        /**
+         * updating a data of a single employee info using findByIdAndUpdate() method  of mongoose
+         */
         EmployeeInfoModel.findByIdAndUpdate( employeeData.employeeId, {
             firstName: employeeData.firstName,
             lastName: employeeData.lastName,
@@ -105,8 +141,15 @@ class EmployeeModel {
         });
     }
 
-    //correct
+    /**
+     * function written to delete data of employee from database
+     * @param {*} A valid employeeData is expected
+     * @param {*} callBack 
+     */
     deleteById (employeeData, callBack) {
+        /**
+         * deleting a data of a single employee info using findByIdAndRemove() method  of mongoose
+         */
         EmployeeInfoModel.findByIdAndRemove(employeeData.employeeInfoId, (error, data) => {
             if(error){
                 return callBack(error, null);
@@ -116,4 +159,7 @@ class EmployeeModel {
     }
 }
 
+/**
+ * exporting the class to utilize or call function created in this class
+ */
 module.exports = new EmployeeModel();

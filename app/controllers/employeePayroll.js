@@ -1,8 +1,22 @@
-const EmployeeInfoService = require('../services/employeeInfoService');
+/**
+ * declared a constant variable to assign a imported class from services
+ */
+const employeeInfoService = require('../services/employeePayroll');
 
+/**
+ * created class to write functions 
+ */
 class EmployeeInfoController {
 
+    /**
+     * function written to create data into database
+     * @param {*} A valid req is expected
+     * @param {*} A valid res is expected
+     */
     createApi(req, res) {
+        /**
+         * object created using requested data from user 
+         */
         const employeeData = {
             firstName: req.params.firstName,
             lastName: req.params.lastName,
@@ -10,9 +24,18 @@ class EmployeeInfoController {
             password: req.params.password
         }
 
+        /**
+         * empty object created
+         */
         const response = {}
 
-        EmployeeInfoService.createEmployeeInfo(employeeData, (error, data) => {
+        /**
+         * calling function from service class
+         */
+        employeeInfoService.createEmployeeInfo(employeeData, (error, data) => {
+            /**
+             * used ternary instead of if-else to send response according to result
+             */
             return ((error) ?
                 res.status(500).send({
                     success: response.success = false,
@@ -27,7 +50,15 @@ class EmployeeInfoController {
         });
     }
 
+    /**
+     * function written to update data into database
+     * @param {*} A valid req is expected
+     * @param {*} A valid res is expected
+     */
     updateApi(req, res) {
+        /**
+         * object created using requested data from user 
+         */
         const employeeData = {
             firstName: req.firstName,
             lastName: req.lastName,
@@ -35,9 +66,18 @@ class EmployeeInfoController {
             password: req.password
         }
 
+        /**
+         * empty object created
+         */
         const response = {}
 
-        EmployeeInfoService.updateEmployeeInfo(employeeData, (error, data) => {
+        /**
+         * calling function from service class
+         */
+        employeeInfoService.updateEmployeeInfo(employeeData, (error, data) => {
+            /**
+             * used ternary instead of if-else to send response according to result
+             */
             return ((error) ?
                 res.status(500).send({
                     success: response.success = false,
@@ -52,10 +92,24 @@ class EmployeeInfoController {
         })
     }
 
+    /**
+     * function written to retrieve data from database
+     * @param {*} A valid request is expected
+     * @param {*} A valid response is expected
+     */
     getAllDataApi(req, res) {
+        /**
+         * empty object created
+         */
         const response = {}
-        EmployeeInfoService.getAllEmployeeInfo( (error, data) => {
-            console.log(error);
+
+        /**
+         * calling function from service class
+         */
+        employeeInfoService.getAllEmployeeInfo((error, data) => {
+            /**
+             * used ternary instead of if-else to send response according to result
+             */
             return ((error) ?
                 res.status(500).send({
                     success: response.success = false,
@@ -69,21 +123,28 @@ class EmployeeInfoController {
         });
     }
 
+    /**
+     * function written to delete data from database
+     * @param {*} A valid request is expected 
+     * @param {*} res 
+     */
     deleteByIdApi(req, res) {
-        const employeeData =  {
-            employeeId : req.id
+        /**
+         * object created using requested data from user 
+         */
+        const employeeData = {
+            employeeId: req.id
         }
-        // const employeeData = {
-        //     firstName: req.firstName,
-        //     lastName: req.lastName,
-        //     email: req.email,
-        //     password: req.password
-        // }
 
-
+        /**
+         * empty object created
+         */
         const response = {}
 
-        EmployeeInfoService.deleteEmployeeInfo(employeeData, (error, data) => {
+        /**
+         * used ternary instead of if-else to send response according to result
+         */
+        employeeInfoService.deleteEmployeeInfo(employeeData, (error, data) => {
             console.log(error);
             return ((error) ?
                 res.status(500).send({
@@ -100,6 +161,9 @@ class EmployeeInfoController {
     }
 }
 
+/**
+ * exporting th whole class to utilize or call function created in this class
+ */
 module.exports = new EmployeeInfoController();
 
 

@@ -1,10 +1,23 @@
-const EmployeeInfoModel = require('../models/employeeInfoModel');
+/**
+ * importing a class from models and assigned to constant variable
+ */
+const employeeInfoModel = require('../models/employeePayroll');
 
+/**
+ * class created to write functions
+ */
 class EmployeeInfoService {
 
-    //correct
+    /**
+     * function created to create employee info into database
+     * @param {*} A valid employeeData is expected 
+     * @param {*} callBack 
+     */
     createEmployeeInfo (employeeData, callBack) {
-        EmployeeInfoModel.createInfo(employeeData, (error, data) => {
+        /**
+         * calling a function created in the models
+         */
+        employeeInfoModel.createInfo(employeeData, (error, data) => {
             if(error) {
                 return callBack(error.null);
             }
@@ -12,9 +25,15 @@ class EmployeeInfoService {
         })
     }
 
-    //correct
+    /**
+     * function created to retrieve data from database
+     * @param {*} callBack 
+     */
     getAllEmployeeInfo (callBack) {
-        EmployeeInfoModel.findAll((error, data) => {
+        /**
+         * calling a function created in the models
+         */
+        employeeInfoModel.findAll((error, data) => {
             if(error){
                 return callBack(error, null);
             }
@@ -22,9 +41,16 @@ class EmployeeInfoService {
         })
     }
 
-    //tentative
+    /**
+     * function created to update info of employee into database
+     * @param {*} A valid employeeData is expected
+     * @param {*} callBack 
+     */
     updateEmployeeInfo(employeeData, callBack) {
-        EmployeeInfoModel.updateInfo(employeeData, (error, data) => {
+        /**
+         * calling a function created in the models
+         */
+        employeeInfoModel.updateInfo(employeeData, (error, data) => {
             if(error) {
                 return callBack(error.null);
             }
@@ -32,9 +58,16 @@ class EmployeeInfoService {
         })
     }
 
-    //tentative
+    /**
+     * function created to delete info of employee using id into database
+     * @param {*} A valid employeeInfoData is expected
+     * @param {*} callBack 
+     */
     deleteEmployeeInfo (employeeInfoData, callBack) {
-        EmployeeInfoModel.deleteById(employeeInfoData ,(error, data) => {
+        /**
+         * calling a function created in the models
+         */
+        employeeInfoModel.deleteById(employeeInfoData ,(error, data) => {
             if(error){
                 return callBack(error, null);
             }
@@ -43,6 +76,9 @@ class EmployeeInfoService {
     }
 }
 
+/**
+ * exporting the class to utilize or call function created in this class
+ */
 module.exports = new EmployeeInfoService();
 
     // static async getAllEmployeeInfo() {

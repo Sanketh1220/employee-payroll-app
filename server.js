@@ -1,29 +1,40 @@
+/**
+ * declared a constant variable to require express
+ */
 const express = require('express');
 require('dotenv').config();
-
-// required config file
-// const dbConfig = require('./config/databaseConfig');
-const dbConfig = require('./config/databaseConfig');
 
 // creating express app
 const app = express();
 
-require('./app/routes/employeeInfoRoutes.js')(app);
+/**
+ * imported file from routes folder
+ * to use its functions here
+ */
+require('./app/routes/employeePayroll.js')(app);
 
-// parsing the requests of content
+/**
+ * parsing the requests of content
+ */
 app.use(express.urlencoded({
     extended: true
 }));
 
-// parsing requests of content type - json
+/**
+ * parsing requests of content type - json
+ */
 app.use(express.json());
 
-// defining a simple root statement
+/**
+ * defining a simple root statement
+ */
 app.get('/', (req, res) => {
     res.send("<h1>Hey! Welcome to employee payroll app.</h1>");
 });
 
-// dbConfig().then(() => {
+/**
+ * declaring a port number for server to run
+ */
 app.listen(3000, function () {
     console.log("Server is up and running")
 });

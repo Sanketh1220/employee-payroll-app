@@ -1,5 +1,14 @@
-const employeeController = require('../controllers/employeeInfoController.js')
+/**
+ * imported a class from controller 
+ * declared a constant variable and assigned to use functions of that imported class
+ */
+const employeeController = require('../controllers/employeePayroll.js')
 
+/**
+ * exporting whole as app 
+ * routes created 
+ * @param {*} app 
+ */
 module.exports = (app) => {
 
      //create new info
@@ -17,7 +26,3 @@ module.exports = (app) => {
      // delete a employee info using ID
      app.delete('/employeePayroll/:employeeInfoId', employeeController.deleteByIdApi);
 }
-
-// app.post('/user/all', function(req, res){
-//      employeeController.createApi
-//    });
