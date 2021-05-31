@@ -96,10 +96,9 @@ class EmployeeModel {
          * creating a data of employee info using save() method  of mongoose
          */
         employee.save({}, (error, data) => {
-            if(error){
-                return callBack(error, null);
-            }
-            return callBack(null, data);
+            return((error)
+                ? (callBack(error, null))
+                : (callBack(null, data)));
         });
     }
 
@@ -112,10 +111,9 @@ class EmployeeModel {
          * finding a data of employee info using find() method  of mongoose
          */
         EmployeeInfoModel.find({}, (error, data) => {
-            if(error){
-                return callBack(error, null);
-            }
-            return callBack(null, data);
+            return((error)
+                ? (callBack(error, null))
+                : (callBack(null, data)));
         });   
     }
 
@@ -134,10 +132,9 @@ class EmployeeModel {
             email: employeeData.email,
             password: employeeData.password
         }, {new : true}, (error, data) => {
-            if(error) {
-                return callBack(error, null);
-            }
-            return callBack(null, data);
+            return((error)
+                ? (callBack(error, null))
+                : (callBack(null, data)));
         });
     }
 
@@ -151,10 +148,9 @@ class EmployeeModel {
          * deleting a data of a single employee info using findByIdAndRemove() method  of mongoose
          */
         EmployeeInfoModel.findByIdAndRemove(employeeData.employeeInfoId, (error, data) => {
-            if(error){
-                return callBack(error, null);
-            }
-            return callBack(null, data);
+            return((error)
+                ? (callBack(error, null))
+                : (callBack(null, data)));
         } )
     }
 }
