@@ -1,6 +1,7 @@
 /**
  * declared a constant variable to require express
  */
+const { config } = require('dotenv');
 const express = require('express');
 
 const databaseConnection = require('./config/dbConfig');

@@ -3,7 +3,9 @@
  */
 const employeeInfoService = require('../services/employeePayroll');
 
-// const validateData = require('../middleware/validation')
+const {
+    validateData
+} = require('../middleware/validation')
 
 /**
  * created class to write functions 
@@ -11,12 +13,18 @@ const employeeInfoService = require('../services/employeePayroll');
 class EmployeeInfoController {
 
     /**
-     * @description function written to create data into database
+     * @description function written to register employee
      * @param {*} A valid req is expected
      * @param {*} res
      */
     registrationApi(req, res) {
-        console.log("This is body request",req.body);
+        var dataValidation = validateData.validate(req.body);
+        if (dataValidation.error) {
+            return res.status(400).send({
+                message: dataValidation.error.details[0].message
+            });
+        }
+        console.log("This is body request", req.body);
         const employeeData = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -47,7 +55,13 @@ class EmployeeInfoController {
      * @param {*} res
      */
     updateApi(req, res) {
-        console.log('Update api controller',req.params)
+        var dataValidation = validateData.validate(req.body);
+        if (dataValidation.error) {
+            return res.status(400).send({
+                message: dataValidation.error.details[0].message
+            });
+        }
+        console.log('Update api controller', req.params)
         let employeeId = req.params;
         const employeeData = {
             id: req.params.id,
@@ -57,7 +71,7 @@ class EmployeeInfoController {
             password: req.body.password
         }
 
-        console.log('This is message for update',employeeData);
+        console.log('This is message for update', employeeData);
 
         employeeInfoService.updateEmployeeInfo(employeeId, employeeData, (error, data) => {
             return ((error) ?
@@ -115,11 +129,11 @@ class EmployeeInfoController {
      * @param {*} A valid request is expected 
      * @param {*} res 
      */
-    deleteByIdApi(req, res){
-        console.log("This is body request for delete",req.body);
+    deleteByIdApi(req, res) {
+        console.log("This is body request for delete", req.body);
         let employeeData = req.params;
 
-        console.log('Delete api test' ,employeeData);
+        console.log('Delete api test', employeeData);
         employeeInfoService.deleteEmployeeInfo(employeeData, (error, data) => {
             console.log(error);
             return ((error) ?
@@ -136,7 +150,7 @@ class EmployeeInfoController {
         })
     }
 
-    loginApi(req, res){
+    loginApi(req, res) {
         const employeeData = {
             email: req.body.email,
             password: req.body.password

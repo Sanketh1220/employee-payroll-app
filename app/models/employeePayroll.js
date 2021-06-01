@@ -76,7 +76,7 @@ const EmployeeInfoModel = mongoose.model('EmployeeInfo', EmployeeInfoSchema);
 class EmployeeModel {
 
     /**
-     * function written to create data into database
+     * @description function written to create data into database
      * using the requested by 
      * @param {*} A valid employeeInfoData is expected
      * @param {*} callBack 
@@ -118,9 +118,6 @@ class EmployeeModel {
      * @param {*} callBack 
      */
     updateInfo (employeeId, employeeData, callBack) {
-        /**
-         * updating a data of a single employee info using findByIdAndUpdate() method  of mongoose
-         */
         EmployeeInfoModel.findByIdAndUpdate( employeeId.employeeInfoId, {
             firstName: employeeData.firstName,
             lastName: employeeData.lastName,
@@ -159,6 +156,11 @@ class EmployeeModel {
         } )
     }
 
+    /**
+     * @description checks if employee is present and generates JWT token
+     * @param {*} employeeData 
+     * @param {*} callBack 
+     */
     loginEmployee (employeeData, callBack) {
         EmployeeInfoModel.findById(employeeData.employeeData.email, (error, data) => {
             return((error)

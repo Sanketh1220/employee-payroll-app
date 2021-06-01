@@ -33,7 +33,7 @@ function databaseConnection() {
     });
 
     return mongoose.connection
-    .once('open', () => console.log('MongoDB Connected'))
+    .once('open', () => console.log('MongoDB is Connected!'))
     .on('error', (error)=> {
         console.log("Error found", error)
     });
