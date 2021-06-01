@@ -3,7 +3,7 @@
  */
 require('dotenv').config();
 
-require('../config.env');
+require('../.env');
 
 const { config } = require('dotenv');
 /**
@@ -16,8 +16,6 @@ const mongoose = require("mongoose");
  * @returns connection
  */
 function databaseConnection() {
-
-    const URL = "mongodb://localhost:27017/employeeInfo";
     
     //included to remove DeprecationWarning: Mongoose: `findOneAndUpdate()` and `findOneAndDelete()` 
     //without the `useFindAndModify` option set to false are deprecated.

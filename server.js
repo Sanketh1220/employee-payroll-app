@@ -41,6 +41,6 @@ require('./app/routes/employeePayroll.js')(app);
 /**
  * declaring a port number for server to run
  */
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log("Server is up and running")
 });
