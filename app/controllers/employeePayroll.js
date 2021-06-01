@@ -11,7 +11,7 @@ class EmployeeInfoController {
     /**
      * function written to create data into database
      * @param {*} A valid req is expected
-     * @param {*} A valid res is expected
+     * @param {*} res
      */
     createApi(req, res) {
         /**
@@ -27,7 +27,7 @@ class EmployeeInfoController {
         /**
          * empty object created
          */
-        const response = {}
+        // const response = {}
 
         /**
          * calling function from service class
@@ -38,14 +38,14 @@ class EmployeeInfoController {
              */
             return ((error) ?
                 res.status(500).send({
-                    success: response.success = false,
-                    message: response.message = "Some error occurred while creating employee info"
+                    success: false,
+                    message: "Some error occurred while creating employee info"
                 }) :
 
                 res.send({
-                    success: response.success = true,
-                    message: response.message = "Employee info added!",
-                    data: response.data = data
+                    success: true,
+                    message: "Employee info added!",
+                    data: data
                 }));
         });
     }
@@ -53,7 +53,7 @@ class EmployeeInfoController {
     /**
      * function written to update data into database
      * @param {*} A valid req is expected
-     * @param {*} A valid res is expected
+     * @param {*} res
      */
     updateApi(req, res) {
         /**
@@ -69,7 +69,7 @@ class EmployeeInfoController {
         /**
          * empty object created
          */
-        const response = {}
+        // const response = {}
 
         /**
          * calling function from service class
@@ -80,14 +80,14 @@ class EmployeeInfoController {
              */
             return ((error) ?
                 res.status(500).send({
-                    success: response.success = false,
-                    message: response.message = "Some error occurred while updating employee info"
+                    success: false,
+                    message: "Some error occurred while updating employee info"
                 }) :
 
                 res.send({
-                    success: response.success = true,
-                    message: response.message = "Employee info updated!",
-                    data: response.data = data
+                    success: true,
+                    message: "Employee info updated!",
+                    data: data
                 }));
         })
     }
@@ -112,13 +112,13 @@ class EmployeeInfoController {
              */
             return ((error) ?
                 res.status(500).send({
-                    success: response.success = false,
-                    message: response.message = "Some error occurred while retrieving employee info"
+                    success: false,
+                    message: "Some error occurred while retrieving employee info"
                 }) :
                 res.send({
-                    success: response.success = true,
-                    message: response.message = "Employee info successfully retrieved!",
-                    data: response.data = data
+                    success: true,
+                    message: "Employee info successfully retrieved!",
+                    data: data
                 }));
         });
     }
@@ -148,14 +148,14 @@ class EmployeeInfoController {
             console.log(error);
             return ((error) ?
                 res.status(500).send({
-                    success: response.success = false,
-                    message: response.message = "Some error occurred while deleting employee info",
+                    success: false,
+                    message: "Some error occurred while deleting employee info",
 
                 }) :
                 res.send({
-                    success: response.success = true,
-                    message: response.message = "Employee info Deleted!",
-                    data: response.data = data
+                    success: true,
+                    message: "Employee info Deleted!",
+                    data: data
                 }));
         })
     }
