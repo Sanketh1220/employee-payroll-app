@@ -82,9 +82,6 @@ class EmployeeModel {
      * @param {*} callBack 
      */
     createInfo (employeeInfoData, callBack) {
-        /**
-         * created a object to insert into database using info got from service
-         */
         const employee = new EmployeeInfoModel ({
             firstName: employeeInfoData.firstName,
             lastName: employeeInfoData.lastName,
@@ -92,9 +89,7 @@ class EmployeeModel {
             password: employeeInfoData.password
         });
 
-        /**
-         * creating a data of employee info using save() method  of mongoose
-         */
+        console.log('models employee data' + employee);
         employee.save({}, (error, data) => {
             return((error)
                 ? (callBack(error, null))
@@ -103,7 +98,7 @@ class EmployeeModel {
     }
 
     /**
-     * function written to retrieve all data from database
+     * @description function written to retrieve all data from database
      * @param {*} callBack 
      */
     findAll (callBack) {
@@ -118,15 +113,15 @@ class EmployeeModel {
     }
 
     /**
-     * function written to update info into database
+     * @description function written to update info into database
      * @param {*} A valid employeeData is expected
      * @param {*} callBack 
      */
-    updateInfo (employeeData, callBack) {
+    updateInfo (employeeId, employeeData, callBack) {
         /**
          * updating a data of a single employee info using findByIdAndUpdate() method  of mongoose
          */
-        EmployeeInfoModel.findByIdAndUpdate( employeeData.employeeId, {
+        EmployeeInfoModel.findByIdAndUpdate( employeeId.employeeInfoId, {
             firstName: employeeData.firstName,
             lastName: employeeData.lastName,
             email: employeeData.email,
@@ -139,19 +134,37 @@ class EmployeeModel {
     }
 
     /**
-     * function written to delete data of employee from database
+     * @description function written to delete data of employee from database
      * @param {*} A valid employeeData is expected
      * @param {*} callBack 
      */
-    deleteById (employeeData, callBack) {
-        /**
-         * deleting a data of a single employee info using findByIdAndRemove() method  of mongoose
-         */
+    deleteById(employeeData, callBack) {
         EmployeeInfoModel.findByIdAndRemove(employeeData.employeeInfoId, (error, data) => {
             return((error)
                 ? (callBack(error, null))
                 : (callBack(null, data)));
         } )
+    }
+    
+    /**
+     * @description gets a data according to ID
+     * @param {*} employeeData 
+     * @param {*} callBack 
+     */
+    getDataById(employeeData, callBack) {
+        EmployeeInfoModel.findById(employeeData.employeeInfoId, (error, data) => {
+            return((error)
+                ? (callBack(error, null))
+                : (callBack(null, data)));
+        } )
+    }
+
+    loginEmployee (employeeData, callBack) {
+        EmployeeInfoModel.findById(employeeData.employeeData.email, (error, data) => {
+            return((error)
+                ? (callBack(error, null))
+                : (callBack(null, data)));
+        })
     }
 }
 

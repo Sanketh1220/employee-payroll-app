@@ -14,9 +14,7 @@ class EmployeeInfoService {
      * @param {*} callBack 
      */
     createEmployeeInfo(employeeData, callBack) {
-        /**
-         * calling a function created in the models
-         */
+        console.log('services employee data' + employeeData);
         employeeInfoModel.createInfo(employeeData, (error, data) => {
             return ((error) ?
                 callBack(error.null) :
@@ -44,11 +42,9 @@ class EmployeeInfoService {
      * @param {*} A valid employeeData is expected
      * @param {*} callBack 
      */
-    updateEmployeeInfo(employeeData, callBack) {
-        /**
-         * calling a function created in the models
-         */
-        employeeInfoModel.updateInfo(employeeData, (error, data) => {
+    updateEmployeeInfo(employeeId, employeeData, callBack) {
+        console.log('service update api', employeeData);
+        employeeInfoModel.updateInfo(employeeId, employeeData, (error, data) => {
             return ((error) ?
                 callBack(error.null) :
                 callBack(null, data));
@@ -61,10 +57,23 @@ class EmployeeInfoService {
      * @param {*} callBack 
      */
     deleteEmployeeInfo(employeeInfoData, callBack) {
-        /**
-         * calling a function created in the models
-         */
         employeeInfoModel.deleteById(employeeInfoData, (error, data) => {
+            return ((error) ?
+                callBack(error.null) :
+                callBack(null, data));
+        })
+    }
+
+    getEmployeeInfo(employeeInfo, callBack) {
+        employeeInfoModel.deleteById(employeeInfo, (error, data) => {
+            return ((error) ?
+                callBack(error.null) :
+                callBack(null, data));
+        })
+    }
+
+    loginEmployee(employeeData, callBack) {
+        employeeInfoModel.loginEmployee(employeeData, (error, data) => {
             return ((error) ?
                 callBack(error.null) :
                 callBack(null, data));

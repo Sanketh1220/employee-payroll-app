@@ -2,16 +2,15 @@
  * declared a constant variable to require express
  */
 const express = require('express');
+
+const databaseConnection = require('./config/dbConfig');
+
 require('dotenv').config();
 
 // creating express app
 const app = express();
 
-/**
- * imported file from routes folder
- * to use its functions here
- */
-require('./app/routes/employeePayroll.js')(app);
+databaseConnection();
 
 /**
  * parsing the requests of content
@@ -33,8 +32,14 @@ app.get('/', (req, res) => {
 });
 
 /**
+ * imported file from routes folder
+ * to use its functions here
+ */
+require('./app/routes/employeePayroll.js')(app);
+
+/**
  * declaring a port number for server to run
  */
-app.listen(3000, function () {
+app.listen(3000, () => {
     console.log("Server is up and running")
 });
