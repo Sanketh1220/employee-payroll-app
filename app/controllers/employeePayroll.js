@@ -3,9 +3,7 @@
  */
 const employeeInfoService = require('../services/employeePayroll');
 
-const {
-    validateData
-} = require('../middleware/validation')
+const {validateData} = require('../middleware/validation');
 
 /**
  * created class to write functions 
@@ -150,6 +148,12 @@ class EmployeeInfoController {
         })
     }
 
+    /**
+     * @description this function handles the login API
+     * @param {*} req 
+     * @param {*} res 
+     * @returns 
+     */
     loginApi(req, res) {
         const employeeData = {
             email: req.body.email,
@@ -165,7 +169,7 @@ class EmployeeInfoController {
 
                 res.send({
                     success: true,
-                    message: "Employee info updated!",
+                    message: "Employee login successful!",
                     data: data
                 }));
         })

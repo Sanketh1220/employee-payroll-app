@@ -16,9 +16,6 @@ const mongoose = require("mongoose");
  * @returns connection
  */
 function databaseConnection() {
-    
-    //included to remove DeprecationWarning: Mongoose: `findOneAndUpdate()` and `findOneAndDelete()` 
-    //without the `useFindAndModify` option set to false are deprecated.
     mongoose.set('useCreateIndex', true);
     mongoose.set('useNewUrlParser', true);
     mongoose.set('useFindAndModify', false);

@@ -15,7 +15,7 @@ module.exports = (app) => {
      app.post('/employeePayroll/registration', employeeController.registrationApi);
 
      //login API get request
-     app.get('/employeePayroll/login', employeeController.loginApi);
+     app.post('/employeePayroll/login', employeeController.loginApi);
 
      //retrieve all employeeInfo
      app.get('/employeePayroll', employeeController.getAllDataApi);

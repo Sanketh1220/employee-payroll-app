@@ -70,6 +70,8 @@ EmployeeInfoSchema.methods.comparePassword = function (candidatePassword, cb) {
  */
 const EmployeeInfoModel = mongoose.model('EmployeeInfo', EmployeeInfoSchema);
 
+module.exports = mongoose.model('EmployeeInfo', EmployeeInfoSchema)
+
 /**
  * created a class to write functions
  */
@@ -162,7 +164,7 @@ class EmployeeModel {
      * @param {*} callBack 
      */
     loginEmployee (employeeData, callBack) {
-        EmployeeInfoModel.findById(employeeData.employeeData.email, (error, data) => {
+        EmployeeInfoModel.findById(employeeData.email, (error, data) => {
             return((error)
                 ? (callBack(error, null))
                 : (callBack(null, data)));

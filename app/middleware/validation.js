@@ -13,7 +13,9 @@ const validateData = joi.object({
     password: joi.string().alphanum().min(8).max(28).required()
 });
 
+
 /**
  * exporting object
  */
 module.exports = {validateData};
+
