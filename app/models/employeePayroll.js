@@ -158,7 +158,6 @@ class EmployeeModel {
      * @param {*} callBack 
      */
     loginEmployee (employeeData, callBack) {
-        console.log('Model data', employeeData);
         EmployeeInfoModel.findOne({'email': employeeData.email}, (error, data) => {
             if(error) {
                 return callBack(error, null);

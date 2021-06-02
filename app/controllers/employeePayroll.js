@@ -150,7 +150,6 @@ class EmployeeInfoController {
      * @returns 
      */
     loginApi(req, res) {
-        console.log('Controller data',req.body);
         const employeeData = {
             email: req.body.email,
             password: req.body.password

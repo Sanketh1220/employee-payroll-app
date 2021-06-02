@@ -3,12 +3,17 @@
  */
 const employeeInfoModel = require('../models/employeePayroll');
 
-// const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
+const jwt = require('jsonwebtoken');
+
 
 /**
  * requiring package bcrypt
  */
 const bcrypt = require('bcrypt');
+const { json } = require('express');
+const e = require('express');
 
 
 /**
@@ -85,7 +90,13 @@ class EmployeeInfoService {
      * @param {*} callBack 
      */
     loginEmployee(employeeData, callBack) {
-        console.log('Service employee data',employeeData);
+
+        function generateAccessToken(employeeData) {
+            return jwt.sign(employeeData, SECRET_TOKEN, { expiresIn: '1800s' });
+        }
+
+        const token = generateAccessToken({employeeData});
+
         employeeInfoModel.loginEmployee(employeeData, (error, data) => {
             if (error) {
                 callBack(error.null);
@@ -93,14 +104,10 @@ class EmployeeInfoService {
             else if (!bcrypt.compareSync(employeeData.password, data.password)){
                 return callBack("Please enter correct password", null);
             }
-            return callBack(null, 'Login Successful');
+            return callBack(token, 'Login Successful');
         });
     }
 
-    // generateAccessToken(email) {
-    //     // return jwt.sign(email. TOKEN, {expiresIn: '1800s'});
-    //     console.log(jwt.sign(email. TOKEN, {expiresIn: '1800s'}));
-    // }
 }
 
 /**
