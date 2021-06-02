@@ -3,8 +3,14 @@
  */
 const employeeInfoModel = require('../models/employeePayroll');
 
+/**
+ * requiring dotenv package so as to get access of env file
+ */
 require('dotenv').config();
 
+/**
+ * requiring jsonwebtoken package and assigned to variable
+ */
 const jwt = require('jsonwebtoken');
 
 
@@ -12,9 +18,6 @@ const jwt = require('jsonwebtoken');
  * requiring package bcrypt
  */
 const bcrypt = require('bcrypt');
-const { json } = require('express');
-const e = require('express');
-
 
 /**
  * class created to write functions
@@ -97,6 +100,8 @@ class EmployeeInfoService {
 
         const token = generateAccessToken({employeeData});
 
+        console.log('token', token);
+
         employeeInfoModel.loginEmployee(employeeData, (error, data) => {
             if (error) {
                 callBack(error.null);
@@ -104,7 +109,7 @@ class EmployeeInfoService {
             else if (!bcrypt.compareSync(employeeData.password, data.password)){
                 return callBack("Please enter correct password", null);
             }
-            return callBack(token, 'Login Successful');
+            return callBack(null, token);
         });
     }
 

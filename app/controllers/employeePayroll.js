@@ -3,6 +3,9 @@
  */
 const employeeInfoService = require('../services/employeePayroll');
 
+/**
+ * declared a constant variable to assign a imported from middleware
+ */
 const {validateData} = require('../middleware/validation');
 
 /**
@@ -102,6 +105,11 @@ class EmployeeInfoController {
         });
     }
 
+    /**
+     * @description gets data of employee by ID
+     * @param {*} req 
+     * @param {*} res 
+     */
     getDataByIdApi(req, res) {
         let employeeId = req.params;
         employeeInfoService.getEmployeeInfo(employeeId, (error, data) => {
@@ -158,7 +166,6 @@ class EmployeeInfoController {
         employeeInfoService.loginEmployee(employeeData, (error, data) => {
             return ((error) ?
                 res.status(500).send({
-                    success: false,
                     message: error
                 }) :
 
