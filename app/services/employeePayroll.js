@@ -3,6 +3,14 @@
  */
 const employeeInfoModel = require('../models/employeePayroll');
 
+// const jwt = require('jsonwebtoken');
+
+/**
+ * requiring package bcrypt
+ */
+const bcrypt = require('bcrypt');
+
+
 /**
  * class created to write functions
  */
@@ -13,7 +21,6 @@ class EmployeeInfoService {
      * @param {*} callBack 
      */
     createEmployeeInfo(employeeData, callBack) {
-        console.log('services employee data' + employeeData);
         employeeInfoModel.createInfo(employeeData, (error, data) => {
             return ((error) ?
                 callBack(error.null) :
@@ -39,7 +46,6 @@ class EmployeeInfoService {
      * @param {*} callBack 
      */
     updateEmployeeInfo(employeeId, employeeData, callBack) {
-        console.log('service update api', employeeData);
         employeeInfoModel.updateInfo(employeeId, employeeData, (error, data) => {
             return ((error) ?
                 callBack(error.null) :
@@ -79,12 +85,22 @@ class EmployeeInfoService {
      * @param {*} callBack 
      */
     loginEmployee(employeeData, callBack) {
+        console.log('Service employee data',employeeData);
         employeeInfoModel.loginEmployee(employeeData, (error, data) => {
-            return ((error) ?
-                callBack(error.null) :
-                callBack(null, data));
-        })
+            if (error) {
+                callBack(error.null);
+            }
+            else if (!bcrypt.compareSync(employeeData.password, data.password)){
+                return callBack("Please enter correct password", null);
+            }
+            return callBack(null, 'Login Successful');
+        });
     }
+
+    // generateAccessToken(email) {
+    //     // return jwt.sign(email. TOKEN, {expiresIn: '1800s'});
+    //     console.log(jwt.sign(email. TOKEN, {expiresIn: '1800s'}));
+    // }
 }
 
 /**

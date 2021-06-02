@@ -126,9 +126,7 @@ class EmployeeModel {
             email: employeeData.email,
             password: employeeData.password
         }, {new : true}, (error, data) => {
-            return((error)
-                ? (callBack(error, null))
-                : (callBack(null, data)));
+            return((error) ? (callBack(error, null)) : (callBack(null, data)));
         });
     }
 
@@ -139,9 +137,7 @@ class EmployeeModel {
      */
     deleteById(employeeData, callBack) {
         EmployeeInfoModel.findByIdAndRemove(employeeData.employeeInfoId, (error, data) => {
-            return((error)
-                ? (callBack(error, null))
-                : (callBack(null, data)));
+            return((error) ? (callBack(error, null)) : (callBack(null, data)));
         } )
     }
     
@@ -152,9 +148,7 @@ class EmployeeModel {
      */
     getDataById(employeeData, callBack) {
         EmployeeInfoModel.findById(employeeData.employeeInfoId, (error, data) => {
-            return((error)
-                ? (callBack(error, null))
-                : (callBack(null, data)));
+            return((error) ? (callBack(error, null)) : (callBack(null, data)));
         } )
     }
 
@@ -164,10 +158,15 @@ class EmployeeModel {
      * @param {*} callBack 
      */
     loginEmployee (employeeData, callBack) {
-        EmployeeInfoModel.findById(employeeData.email, (error, data) => {
-            return((error)
-                ? (callBack(error, null))
-                : (callBack(null, data)));
+        console.log('Model data', employeeData);
+        EmployeeInfoModel.findOne({'email': employeeData.email}, (error, data) => {
+            if(error) {
+                return callBack(error, null);
+            } else if (!data) {
+                return callBack ("This user doesn't exist! Please register.", null);
+            }
+            return callBack(null, data);
+
         })
     }
 }

@@ -22,15 +22,13 @@ class EmployeeInfoController {
                 message: dataValidation.error.details[0].message
             });
         }
-        console.log("This is body request", req.body);
+
         const employeeData = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
             password: req.body.password
         }
-
-        console.log("hey this is controller", employeeData);
 
         employeeInfoService.createEmployeeInfo(employeeData, (error, data) => {
             return ((error) ?
@@ -59,7 +57,7 @@ class EmployeeInfoController {
                 message: dataValidation.error.details[0].message
             });
         }
-        console.log('Update api controller', req.params)
+
         let employeeId = req.params;
         const employeeData = {
             id: req.params.id,
@@ -68,8 +66,6 @@ class EmployeeInfoController {
             email: req.body.email,
             password: req.body.password
         }
-
-        console.log('This is message for update', employeeData);
 
         employeeInfoService.updateEmployeeInfo(employeeId, employeeData, (error, data) => {
             return ((error) ?
@@ -128,7 +124,6 @@ class EmployeeInfoController {
      * @param {*} res 
      */
     deleteByIdApi(req, res) {
-        console.log("This is body request for delete", req.body);
         let employeeData = req.params;
 
         console.log('Delete api test', employeeData);
@@ -155,6 +150,7 @@ class EmployeeInfoController {
      * @returns 
      */
     loginApi(req, res) {
+        console.log('Controller data',req.body);
         const employeeData = {
             email: req.body.email,
             password: req.body.password
@@ -164,7 +160,7 @@ class EmployeeInfoController {
             return ((error) ?
                 res.status(500).send({
                     success: false,
-                    message: "Some error occurred while updating employee info"
+                    message: error
                 }) :
 
                 res.send({
