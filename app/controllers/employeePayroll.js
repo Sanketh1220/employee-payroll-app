@@ -62,7 +62,7 @@ class EmployeeInfoController {
 
         employeeInfoService.updateEmployeeInfo(employeeId, employeeData, (error, data) => {
             return ((error) ? res.status(500).send({success: false, message: "Some error occurred while updating employee info"}) : res.send({ success: true, message: "Employee info updated!", data: data}));
-        })
+        });
     }
 
     /**
@@ -85,7 +85,7 @@ class EmployeeInfoController {
         let employeeId = req.params;
         employeeInfoService.getEmployeeInfo(employeeId, (error, data) => {
             return ((error) ? res.status(500).send({success: false, message: "Some error occurred while retrieving employee info"}) : res.send({success: true, message: "Employee info successfully retrieved!", data: data}));
-        })
+        });
     }
 
     /**
@@ -100,7 +100,7 @@ class EmployeeInfoController {
         employeeInfoService.deleteEmployeeInfo(employeeData, (error, data) => {
             console.log(error);
             return ((error) ? res.status(500).send({success: false, message: "Some error occurred while deleting employee info"}) : res.send({success: true, message: "Employee info Deleted!", data: data}));
-        })
+        });
     }
 
     /**
@@ -115,9 +115,9 @@ class EmployeeInfoController {
             password: req.body.password
         }
 
-        employeeInfoService.loginEmployee(employeeData, (error, data) => {
-            return ((error) ? res.status(500).send({message: error}) : res.send({success: true, message: "Employee login successful!", data: data}));
-        })
+        employeeInfoService.loginEmployee(employeeData, (error, token) => {
+            return ((error) ? res.status(500).send({message: error}) : res.send({success: true, message: "Employee login successful!", token: token}));
+        });
     }
 }
 

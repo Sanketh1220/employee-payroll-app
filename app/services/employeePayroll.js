@@ -3,6 +3,8 @@
  */
 const employeeInfoModel = require('../models/employeePayroll');
 
+const helperClass = require('../middleware/helperFile');
+
 /**
  * requiring dotenv package so as to get access of env file
  */
@@ -84,25 +86,19 @@ class EmployeeInfoService {
      */
     loginEmployee(employeeData, callBack) {
 
-        function generateAccessToken(employeeData) {
-            return jwt.sign(employeeData, SECRET_TOKEN, { expiresIn: '1800s' });
-        }
 
-        const token = generateAccessToken({employeeData});
-
-        console.log('token', token);
+        const token = helperClass.generateAccessToken({employeeData});
 
         employeeInfoModel.loginEmployee(employeeData, (error, data) => {
             if (error) {
-                callBack(error.null);
+                callBack(error, null);
             }
-            else if (!bcrypt.compareSync(employeeData.password, data.password)){
+            else if (helperClass.bcryptDataCheck(employeeData.password, data.password)){
                 return callBack("Please enter correct password", null);
             }
             return callBack(null, token);
         });
     }
-
 }
 
 /**
