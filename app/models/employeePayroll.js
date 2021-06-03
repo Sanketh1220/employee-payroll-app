@@ -93,9 +93,7 @@ class EmployeeModel {
 
         console.log('models employee data' + employee);
         employee.save({}, (error, data) => {
-            return((error)
-                ? (callBack(error, null))
-                : (callBack(null, data)));
+            return((error) ? (callBack(error, null)) : (callBack(null, data)));
         });
     }
 
@@ -108,9 +106,7 @@ class EmployeeModel {
          * finding a data of employee info using find() method  of mongoose
          */
         EmployeeInfoModel.find({}, (error, data) => {
-            return((error)
-                ? (callBack(error, null))
-                : (callBack(null, data)));
+            return((error) ? (callBack(error, null)) : (callBack(null, data)));
         });   
     }
 
@@ -138,7 +134,7 @@ class EmployeeModel {
     deleteById(employeeData, callBack) {
         EmployeeInfoModel.findByIdAndRemove(employeeData.employeeInfoId, (error, data) => {
             return((error) ? (callBack(error, null)) : (callBack(null, data)));
-        } )
+        });
     }
     
     /**
@@ -149,7 +145,7 @@ class EmployeeModel {
     getDataById(employeeData, callBack) {
         EmployeeInfoModel.findById(employeeData.employeeInfoId, (error, data) => {
             return((error) ? (callBack(error, null)) : (callBack(null, data)));
-        } )
+        });
     }
 
     /**
@@ -165,8 +161,7 @@ class EmployeeModel {
                 return callBack ("This user doesn't exist! Please register.", null);
             }
             return callBack(null, data);
-
-        })
+        });
     }
 }
 

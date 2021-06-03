@@ -34,17 +34,7 @@ class EmployeeInfoController {
         }
 
         employeeInfoService.createEmployeeInfo(employeeData, (error, data) => {
-            return ((error) ?
-                res.status(500).send({
-                    success: false,
-                    message: "Some error occurred while creating employee info"
-                }) :
-
-                res.send({
-                    success: true,
-                    message: "Employee info added!",
-                    data: data
-                }));
+            return ((error) ? res.status(500).send({success: false, message: "Some error occurred while creating employee info" }) : res.send({success: true, message: "Employee info added!", data: data}));
         });
     }
 
@@ -71,17 +61,7 @@ class EmployeeInfoController {
         }
 
         employeeInfoService.updateEmployeeInfo(employeeId, employeeData, (error, data) => {
-            return ((error) ?
-                res.status(500).send({
-                    success: false,
-                    message: "Some error occurred while updating employee info"
-                }) :
-
-                res.send({
-                    success: true,
-                    message: "Employee info updated!",
-                    data: data
-                }));
+            return ((error) ? res.status(500).send({success: false, message: "Some error occurred while updating employee info"}) : res.send({ success: true, message: "Employee info updated!", data: data}));
         })
     }
 
@@ -92,16 +72,7 @@ class EmployeeInfoController {
      */
     getAllDataApi(req, res) {
         employeeInfoService.getAllEmployeeInfo((error, data) => {
-            return ((error) ?
-                res.status(500).send({
-                    success: false,
-                    message: "Some error occurred while retrieving employee info"
-                }) :
-                res.send({
-                    success: true,
-                    message: "Employee info successfully retrieved!",
-                    data: data
-                }));
+            return ((error) ? res.status(500).send({success: false, message: "Some error occurred while retrieving employee info"}) : res.send({success: true, message: "Employee info successfully retrieved!", data: data}));
         });
     }
 
@@ -113,16 +84,7 @@ class EmployeeInfoController {
     getDataByIdApi(req, res) {
         let employeeId = req.params;
         employeeInfoService.getEmployeeInfo(employeeId, (error, data) => {
-            return ((error) ?
-                res.status(500).send({
-                    success: false,
-                    message: "Some error occurred while retrieving employee info"
-                }) :
-                res.send({
-                    success: true,
-                    message: "Employee info successfully retrieved!",
-                    data: data
-                }));
+            return ((error) ? res.status(500).send({success: false, message: "Some error occurred while retrieving employee info"}) : res.send({success: true, message: "Employee info successfully retrieved!", data: data}));
         })
     }
 
@@ -137,17 +99,7 @@ class EmployeeInfoController {
         console.log('Delete api test', employeeData);
         employeeInfoService.deleteEmployeeInfo(employeeData, (error, data) => {
             console.log(error);
-            return ((error) ?
-                res.status(500).send({
-                    success: false,
-                    message: "Some error occurred while deleting employee info",
-
-                }) :
-                res.send({
-                    success: true,
-                    message: "Employee info Deleted!",
-                    data: data
-                }));
+            return ((error) ? res.status(500).send({success: false, message: "Some error occurred while deleting employee info"}) : res.send({success: true, message: "Employee info Deleted!", data: data}));
         })
     }
 
@@ -164,16 +116,7 @@ class EmployeeInfoController {
         }
 
         employeeInfoService.loginEmployee(employeeData, (error, data) => {
-            return ((error) ?
-                res.status(500).send({
-                    message: error
-                }) :
-
-                res.send({
-                    success: true,
-                    message: "Employee login successful!",
-                    data: data
-                }));
+            return ((error) ? res.status(500).send({message: error}) : res.send({success: true, message: "Employee login successful!", data: data}));
         })
     }
 }

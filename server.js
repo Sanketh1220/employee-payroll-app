@@ -31,6 +31,10 @@ app.get('/', (req, res) => {
     res.send("<h1>Hey! Welcome to employee payroll app.</h1>");
 });
 
+app.get('/login', (req, res) => {
+    res.send("<h1>Email</h1><h1>Password</h1>");
+});
+
 /**
  * imported file from routes folder
  * to use its functions here

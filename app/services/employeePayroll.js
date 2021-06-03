@@ -30,10 +30,8 @@ class EmployeeInfoService {
      */
     createEmployeeInfo(employeeData, callBack) {
         employeeInfoModel.createInfo(employeeData, (error, data) => {
-            return ((error) ?
-                callBack(error.null) :
-                callBack(null, data));
-        })
+            return ((error) ? callBack(error.null) : callBack(null, data));
+        });
     }
 
     /**
@@ -42,10 +40,8 @@ class EmployeeInfoService {
      */
     getAllEmployeeInfo(callBack) {
         employeeInfoModel.findAll((error, data) => {
-            return ((error) ?
-                callBack(error.null) :
-                callBack(null, data));
-        })
+            return ((error) ? callBack(error.null) : callBack(null, data));
+        });
     }
 
     /**
@@ -55,10 +51,8 @@ class EmployeeInfoService {
      */
     updateEmployeeInfo(employeeId, employeeData, callBack) {
         employeeInfoModel.updateInfo(employeeId, employeeData, (error, data) => {
-            return ((error) ?
-                callBack(error.null) :
-                callBack(null, data));
-        })
+            return ((error) ? callBack(error.null) : callBack(null, data));
+        });
     }
 
     /**
@@ -68,10 +62,8 @@ class EmployeeInfoService {
      */
     deleteEmployeeInfo(employeeInfoData, callBack) {
         employeeInfoModel.deleteById(employeeInfoData, (error, data) => {
-            return ((error) ?
-                callBack(error.null) :
-                callBack(null, data));
-        })
+            return ((error) ? callBack(error.null) : callBack(null, data)); 
+        });
     }
 
     /**
@@ -81,10 +73,8 @@ class EmployeeInfoService {
      */
     getEmployeeInfo(employeeInfo, callBack) {
         employeeInfoModel.getDataById(employeeInfo, (error, data) => {
-            return ((error) ?
-                callBack(error.null) :
-                callBack(null, data));
-        })
+            return ((error) ? callBack(error.null) : callBack(null, data));
+        });
     }
 
     /**
