@@ -4,7 +4,7 @@
   "description": "gives the basic info employee",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --timeout 10000",
+    "test": "mocha --timeout 20000",
     "start": "SET NODE_ENV=dev && node server.js"
   },
   "author": "Sanketh Chigurupalli",
