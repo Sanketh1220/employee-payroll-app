@@ -31,10 +31,6 @@ app.get('/', (req, res) => {
     res.send("<h1>Hey! Welcome to employee payroll app.</h1>");
 });
 
-app.get('/login', (req, res) => {
-    res.send("<h1>Email</h1><h1>Password</h1>");
-});
-
 /**
  * imported file from routes folder
  * to use its functions here
@@ -44,6 +40,8 @@ require('./app/routes/employeePayroll.js')(app);
 /**
  * declaring a port number for server to run
  */
-app.listen(PORT, () => {
-    console.log("Server is up and running")
+ app.listen(PORT, () => {
+    console.log("Server is up and running");
 });
+
+module.exports = app;
