@@ -5,6 +5,7 @@ const { config } = require('dotenv');
 
 //constant variable created to require mongoose package and assigned to variable
 const mongoose = require("mongoose");
+const logger = require('./logger');
 
 /**
  * @description function to connect to database
@@ -23,9 +24,9 @@ function databaseConnection() {
     });
 
     return mongoose.connection
-    .once('open', () => console.log('MongoDB is Connected!'))
+    .once('open', () => logger.log("info", "MongoDB is Connected!"))
     .on('error', (error)=> {
-        console.log("Error found", error)
+        logger.log("error","Error found", error)
     });
 }
 

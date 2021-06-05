@@ -4,7 +4,7 @@
   "description": "gives the basic info employee",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --timeout 20000",
+    "test": "mocha --timeout 10000 && node_modules/mocha/bin/mocha ./tests",
     "start": "nodemon server.js"
   },
   "author": "Sanketh Chigurupalli",
@@ -21,13 +21,16 @@
     "npm": "^7.15.0",
     "schema-validator": "^3.3.1",
     "swagger-jsdoc": "^6.1.0",
-    "swagger-ui-express": "^4.1.6"
+    "swagger-ui-express": "^4.1.6",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "chai": "^4.3.4",
     "chai-http": "^4.3.0",
     "mocha": "^8.4.0",
     "nodemon": "^2.0.7",
-    "should": "^13.2.3"
+    "should": "^13.2.3",
+    "superagent": "^3.8.3",
+    "supertest": "^6.1.3"
   }
 }

@@ -1,15 +1,16 @@
+const { expect } = require('chai');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const { use } = require('../server');
+require('superagent');
+const request = require('supertest');
+// const { request } = require('../server');
 const server = require('../server');
 const userInputs = require('./employeeData.json');
 
 //assertion style
 const should = chai.should();
-
 chai.use(chaiHttp);
 
-describe('Employee Payroll API', () => {
 
     /**
      * /POST request test
@@ -78,4 +79,37 @@ describe('Employee Payroll API', () => {
                 })
         })
     })
-});
+
+    var authenticatedUser = request.agent(server);
+
+    before(function(done){
+        authenticatedUser
+            .post('/employeePayroll/login')
+            .send(userInputs.employeeLogPos)
+            .end(function(err, res) {
+                expect(res.statusCode).to.equal(200);
+                expect('Location' ,'/');
+                done();
+            });
+    });
+
+    describe('GET /', function(done) {
+        //if the user is logged in we should get a 200 status code
+        it('Should return a 200 response if the user is logged in',
+        function(done){
+            authenticatedUser.get('/employeePayroll/login')
+            .expect(200, done);
+        });
+
+        //if the user is not logged in we should get a 302 response code and be directed to the / page
+        it('Should return 302 response and redirect to /',
+        function(done){
+            request(app).get('/employeePayroll/login')
+            .expect('Location', '/')
+            .expect(302, done);
+        })
+    });
+
+
+// describe('Employee Payroll API', () => {
+// });
