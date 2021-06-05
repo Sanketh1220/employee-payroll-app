@@ -1,5 +1,11 @@
+/**
+ * requiring the jsonwebtokens package
+ */
 const jwt = require('jsonwebtoken');
 
+/**
+ * getting access for env file for providing secret_token
+ */
 require('dotenv').config();
 
 module.exports = {
