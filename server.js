@@ -7,6 +7,10 @@ const databaseConnection = require('./config/dbConfig');
 
 require('dotenv').config();
 
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUI = require('swagger-ui-express');
+const { version } = require('chai');
+
 // creating express app
 const app = express();
 
@@ -36,6 +40,38 @@ app.get('/', (req, res) => {
  * to use its functions here
  */
 require('./app/routes/employeePayroll.js')(app);
+
+const swaggerOptions = {
+    swaggerDefinition: {
+        info: {
+            title: 'Employee Payroll API',
+            version: '1.0.0'
+        }
+    },
+    apis: ['server.js'],
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+console.log(swaggerDocs);
+app.use('/heyda', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
+
+/**
+ * @swagger
+ * /heyda:
+ *      get:
+ *          description: Get info
+ *          responses: 
+ *              200:
+ *                  description: Success
+ */
+app.get('/heyda', (req, res) => {
+    res.send({
+        firstName: 'Sanketh',
+        lasName: 'Chigurupalli',
+        email: 'sanketh.chigurupalli@gmail.com',
+        password: 'nonefor&ad34'
+    })
+})
 
 /**
  * declaring a port number for server to run
