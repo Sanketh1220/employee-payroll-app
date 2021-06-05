@@ -1,29 +1,18 @@
- /**
- * importing a class from models and assigned to constant variable
- */
+//importing a class from models and assigned to constant variable
 const employeeInfoModel = require('../models/employeePayroll');
 
-const helperClass = require('../middleware/helperFile');
+const helperClass = require('../middleware/helper');
 
-/**
- * requiring dotenv package so as to get access of env file
- */
+//requiring dotenv package so as to get access of env file
 require('dotenv').config();
 
-/**
- * requiring jsonwebtoken package and assigned to variable
- */
+//requiring jsonwebtoken package and assigned to variable
 const jwt = require('jsonwebtoken');
 
-
-/**
- * requiring package bcrypt
- */
+//requiring package bcrypt
 const bcrypt = require('bcrypt');
 
-/**
- * class created to write functions
- */
+//class created to write functions
 class EmployeeInfoService {
     /**
      * @description function created to create employee info into database
@@ -101,7 +90,5 @@ class EmployeeInfoService {
     }
 }
 
-/**
- * exporting the class to utilize or call function created in this class
- */
+//exporting the class to utilize or call function created in this class
 module.exports = new EmployeeInfoService();

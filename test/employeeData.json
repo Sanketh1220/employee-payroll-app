@@ -1,0 +1,14 @@
+let employeeRegPos = {
+    "firstName": "Umesh",
+    "lastName": "Yadav",
+    "email": "umesh.yadav231@gmail.com",
+    "password": "Umeshwar@12"
+}
+
+let employeeRegNeg = {
+    "firstName": "",
+    "lastName": "Yadav",
+    "email": "umesh.yadav231@gmail.com",
+    "password": "Umeshwar@12"
+}
+

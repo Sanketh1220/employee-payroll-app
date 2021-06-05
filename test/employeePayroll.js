@@ -1,8 +1,7 @@
-// const mongoose = require('mongoose');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../server');
-// const employeeModel = require('../app/models/employeePayroll');
+const userInputs = require('./employeeData.json');
 
 //assertion style
 const should = chai.should();
@@ -51,12 +50,7 @@ describe('Employee Payroll API', () => {
      */
     describe('/POST employee data', () => {
         it('it should POST a employee Data', (done) => {
-            let employeeInfo = {
-                firstName: "Umesh",
-                lastName: "Yadav",
-                email: "umesh.yadav231@gmail.com",
-                password: "Umeshwar@12"
-            }
+            let employeeInfo = JSON.parse()
             chai.request(server)
                 .post('/employeePayroll')
                 .send(employeeInfo)

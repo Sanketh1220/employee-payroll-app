@@ -1,16 +1,10 @@
-/**
- * declared a constant variable to assign a imported class from services
- */
+//declared a constant variable to assign a imported class from services
 const employeeInfoService = require('../services/employeePayroll');
 
-/**
- * declared a constant variable to assign a imported from middleware
- */
+//declared a constant variable to assign a imported from middleware
 const {validateData} = require('../middleware/validation');
 
-/**
- * created class to write functions 
- */
+//created class to write functions
 class EmployeeInfoController {
 
     /**
@@ -121,7 +115,5 @@ class EmployeeInfoController {
     }
 }
 
-/**
- * exporting th whole class to utilize or call function created in this class
- */
+//exporting th whole class to utilize or call function created in this class
 module.exports = new EmployeeInfoController();

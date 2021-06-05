@@ -1,11 +1,7 @@
-/**
- * requiring package joi-validator assigned to constant variable
- */
+//requiring package joi-validator assigned to constant variable
 const joi = require('@hapi/joi');
 
-/**
- * created a object validate data given each element with set of rules
- */
+//created a object validate data given each element with set of rules
 const validateData = joi.object({
     firstName: joi.string().min(3).max(20).pattern(new RegExp('^[a-zA-Z ]{2,30}$')).required(),
     lastName: joi.string().min(3).max(20).pattern(new RegExp('^[a-zA-Z ]{2,30}$')).required(),
@@ -13,8 +9,6 @@ const validateData = joi.object({
     password: joi.string().min(8).max(28).required()
 });
 
-/**
- * exporting object
- */
+//exporting object
 module.exports = {validateData};
 

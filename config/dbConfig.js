@@ -1,14 +1,9 @@
-/**
- * requiring 'dotenv' package
- */
+//requiring 'dotenv' package
 require('dotenv').config();
-
 require('../.env');
-
 const { config } = require('dotenv');
-/**
- * constant variable created to require mongoose package and assigned to variable
- */
+
+//constant variable created to require mongoose package and assigned to variable
 const mongoose = require("mongoose");
 
 /**
@@ -34,7 +29,5 @@ function databaseConnection() {
     });
 }
 
-/**
- * exporting function to utilize where it is imported
- */
+//exporting function to utilize where it is imported
 module.exports = databaseConnection;

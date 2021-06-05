@@ -1,10 +1,7 @@
-/**
- * imported a class from controller 
- * declared a constant variable and assigned to use functions of that imported class
- */
+//imported a class from controller declared a constant variable and assigned to use functions of that imported class
 const employeeController = require('../controllers/employeePayroll.js')
 
-const tokenCheck = require('../middleware/authorization');
+const tokenCheck = require('../middleware/helper');
 
 /**
  * exporting whole as app 

@@ -1,17 +1,11 @@
-/**
- * requiring the mongoose package to connect to mongoDB database
- */
+//requiring the mongoose package to connect to mongoDB database
 const mongoose = require('mongoose');
 
-/**
- * requiring package "bcrypt" to authenticate the password
- */
+//requiring package "bcrypt" to authenticate the password
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR =  10;
 
-/**
- * schema created to store data as such into database
- */
+//schema created to store data as such into database
 const EmployeeInfoSchema = new mongoose.Schema({
     firstName: {
         type: String,
@@ -65,16 +59,12 @@ EmployeeInfoSchema.methods.comparePassword = function (candidatePassword, cb) {
     });
 };
 
-/**
- * created constant variable to assign schema
- */
+//created constant variable to assign schema
 const EmployeeInfoModel = mongoose.model('EmployeeInfo', EmployeeInfoSchema);
 
 module.exports = mongoose.model('EmployeeInfo', EmployeeInfoSchema)
 
-/**
- * created a class to write functions
- */
+//created a class to write functions
 class EmployeeModel {
 
     /**
@@ -165,7 +155,5 @@ class EmployeeModel {
     }
 }
 
-/**
- * exporting the class to utilize or call function created in this class
- */
+//exporting the class to utilize or call function created in this class
 module.exports = new EmployeeModel();
