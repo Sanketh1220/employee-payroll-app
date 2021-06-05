@@ -1,14 +1,25 @@
-let employeeRegPos = {
-    "firstName": "Umesh",
-    "lastName": "Yadav",
-    "email": "umesh.yadav231@gmail.com",
-    "password": "Umeshwar@12"
-}
+{
+    "employeeRegPos" :{
+        "firstName": "Umesh",
+        "lastName": "Yadav",
+        "email": "umesh.yadav231@gmail.com",
+        "password": "Umeshwar@12"
+    },
 
-let employeeRegNeg = {
-    "firstName": "",
-    "lastName": "Yadav",
-    "email": "umesh.yadav231@gmail.com",
-    "password": "Umeshwar@12"
-}
+    "employeeRegNeg" :{
+        "firstName": "",
+        "lastName": "Yadav",
+        "email": "umesh.yadav231@gmail.com",
+        "password": "Umeshwar@12"
+    },
 
+    "employeeLogPos" : {
+        "email": "himanshu.uggar4506@gmail.com", 
+        "password": "himanshuK@34"
+    },
+
+    "employeeLogNeg" : {
+        "email": "himanshu.uggar4506@gmail", 
+        "password": "himanshuK@34"
+    }
+}

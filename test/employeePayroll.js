@@ -1,5 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
+const { use } = require('../server');
 const server = require('../server');
 const userInputs = require('./employeeData.json');
 
@@ -11,69 +12,12 @@ chai.use(chaiHttp);
 describe('Employee Payroll API', () => {
 
     /**
-     * Test the GET all employee data API
+     * /POST request test
+     * Positive and Negative - Login Test 
      */
-    describe('/GET /employeePayroll', () => {
-        it('It should GET all employee info', (done) => {
-            chai.request(server)
-                .get('/employeePayroll')
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.length.should.be.eq(5);
-                    done();
-                });
-        });
-    });
-
-    /**
-     * Test the GET single employee data by ID API
-     */
-    describe('/GET /employeePayroll', () => {
-        it('it should return employee info by ID', (done) => {
-            const employeeInfoId = '60b6617cb2b1e55a6d074aa9';
-            chai.request(server)
-                .get('/employeePayroll/:' + employeeInfoId)
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.should.have.property('success').eql(true);
-                    res.body.should.have.property('message').eql('Employee info successfully retrieved!');
-                    res.body.length.should.be.eq(5);
-                    done();
-                });
-        });
-    });
-
-    /*
-     * Test the /POST route
-     */
-    describe('/POST employee data', () => {
-        it('it should POST a employee Data', (done) => {
-            let employeeInfo = JSON.parse()
-            chai.request(server)
-                .post('/employeePayroll')
-                .send(employeeInfo)
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.should.have.property("success").eql(true);
-                    res.body.should.have.property('message').eql('Employee info added!');
-                    res.body.should.have.property('firstName');
-                    res.body.should.have.property('lastName');
-                    res.body.should.have.property('email');
-                    res.body.should.have.property('password');                    
-                    done();
-                });
-        });
-    });
-
-    describe('/POST employee login', () => {
+    describe('POST employee /login', () => {
         it('it should make POST for login employee', (done) => {
-            let employeeData = {
-                email: "himanshu.uggar4506@gmail.com",
-                password: "himanshuK@34"
-            }
+            let employeeData = userInputs.employeeLogPos
             chai.request(server)
                 .post('/employeePayroll/login')
                 .send(employeeData)
@@ -86,16 +30,28 @@ describe('Employee Payroll API', () => {
                     done();
                 })
         })
+
+        it('it should not make POST for login employee', (done) => {
+            let employeeData = userInputs.employeeLogNeg
+            chai.request(server)
+                .post('/employeePayroll/login')
+                .send(employeeData)
+                .end((err, res) => {
+                    res.should.have.status(500);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property("message").eql("This user doesn't exist! Please register.");
+                    done();
+                })
+        })
     })
 
-    describe('/POST employee login', () => {
+    /**
+     * /POST request test
+     * Positive and Negative - Registration Test 
+     */
+    describe('POST employee /registration', () => {
         it('it should make POST for registration', (done) => {
-            let employeeData = {
-                firstName: "Rushikesh", 
-                lastName: "Tayade", 
-                email: "rushikesh.tayade@gmail.com", 
-                password: "Rushi@123"
-            }
+            let employeeData = userInputs.employeeRegPos
             chai.request(server)
                 .post('/employeePayroll/registration')
                 .send(employeeData)
@@ -105,6 +61,19 @@ describe('Employee Payroll API', () => {
                     res.body.should.have.property("success").eql(true);
                     res.body.should.have.property("message").eql("Employee info added!");
                     res.body.should.have.property("data").should.be.a('object');
+                    done();
+                })
+        })
+
+        it('it should make not POST for registration', (done) => {
+            let employeeData = userInputs.employeeRegNeg
+            chai.request(server)
+                .post('/employeePayroll/registration')
+                .send(employeeData)
+                .end((err, res) => {
+                    res.should.have.status(400);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property("message").eql("\"firstName\" is not allowed to be empty");
                     done();
                 })
         })
