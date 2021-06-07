@@ -74,8 +74,6 @@ class EmployeeInfoService {
      * @param {*} callBack 
      */
     loginEmployee(employeeData, callBack) {
-
-
         const token = helperClass.generateAccessToken({employeeData});
 
         employeeInfoModel.loginEmployee(employeeData, (error, data) => {

@@ -1,25 +1,86 @@
 {
-    "employeeRegPos" :{
+    "employeeRegPos": {
         "firstName": "Umesh",
         "lastName": "Yadav",
         "email": "umesh.yadav231@gmail.com",
         "password": "Umeshwar@12"
     },
 
-    "employeeRegNeg" :{
+    "employeeRegNeg": {
         "firstName": "",
         "lastName": "Yadav",
         "email": "umesh.yadav231@gmail.com",
         "password": "Umeshwar@12"
     },
 
-    "employeeLogPos" : {
-        "email": "himanshu.uggar4506@gmail.com", 
+    "employeeLogPos": {
+        "email": "himanshu.uggar4506@gmail.com",
         "password": "himanshuK@34"
     },
 
-    "employeeLogNeg" : {
-        "email": "himanshu.uggar4506@gmail", 
+    "employeeLogNeg": {
+        "email": "himanshu.uggar4506@gmail",
         "password": "himanshuK@34"
+    },
+
+    "employeePutPos": {
+        "firstName": "Sanketh",
+        "lastName": "Babbur",
+        "email": "sanketh.chigurupalli@gmail.com",
+        "password": "Hey@345666"
+    },
+
+    "employeePutNeg": {
+        "firstName": "Sanketh",
+        "lastName": "",
+        "email": "sanketh.chigurupalli@gmail.com",
+        "password": "Hey@345666"
+    },
+
+    "employeeGetSinglePos": {
+        "success": true,
+        "message": "Employee info successfully retrieved!",
+        "data": {
+            "_id": "60b7b79c274ad6211e49e79c",
+            "firstName": "Rushikesh",
+            "lastName": "Tayade",
+            "email": "rushikesh.tayade@gmail.com",
+            "password": "$2b$10$E7Wz2Ma8lN1fNYkElmLS0e6Yq9on5yzzyd2x3atxaImWhh5.LUPxu",
+            "createdAt": "2021-06-02T16:53:48.108Z",
+            "updatedAt": "2021-06-02T16:53:48.108Z",
+            "__v": 0
+        }
+    },
+
+    "employeeGetSingleNeg": {
+        "employeeId": "60b7b79c274ad6211e49e79",
+        "success": true,
+        "message": "Employee info successfully retrieved!"
+    },
+
+    "employeeDelPos": {
+        "success": true,
+        "message": "Employee info Deleted!",
+        "data": {
+            "_id": "60bb9479fc5674e064a6e6db",
+            "firstName": "Umesh",
+            "lastName": "Yadav",
+            "email": "umesh.yadav231@gmail.com",
+            "password": "$2b$10$NeFlg.WssCUK.SgUsqY/bOriZaHiEALhZI.HJoOroy2lAbQA4zUdy",
+            "createdAt": "2021-06-05T15:12:57.999Z",
+            "updatedAt": "2021-06-05T15:12:57.999Z",
+            "__v": 0
+        }
+    },
+
+    "employeeDelNeg": {
+        "success": true,
+        "message": "Employee info Deleted!"
+    },
+
+    "employeeGetAllPos": {
+        "success": true,
+        "message": "Employee info successfully retrieved!",
+        "data": "array"
     }
 }
