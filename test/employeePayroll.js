@@ -1,8 +1,6 @@
-const {expect} = require('chai');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 require('superagent');
-const request = require('supertest');
 const server = require('../server');
 const userInputs = require('./employeeData.json');
 
