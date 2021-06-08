@@ -11,7 +11,7 @@ const tokenCheck = require('../middleware/helper');
 module.exports = (app) => {
 
      //registration API post request
-     app.post('/employeePayroll/registration' ,employeeController.registrationApi);
+     app.post('/employeePayroll/registration', employeeController.registrationApi);
 
      //login API get request
      app.post('/employeePayroll/login', employeeController.loginApi);
@@ -23,8 +23,8 @@ module.exports = (app) => {
      app.get('/employeePayroll/:employeeInfoId', tokenCheck.tokenChecker ,employeeController.getDataByIdApi);
 
      //updating a employeeInfo using ID
-     app.put('/employeePayroll/:employeeInfoId', tokenCheck.tokenChecker, employeeController.updateApi);
+     app.put('/employeePayroll/update/:employeeInfoId', tokenCheck.tokenChecker, employeeController.updateApi);
 
      //delete a employee info using ID
-     app.delete('/employeePayroll/:employeeInfoId', tokenCheck.tokenChecker, employeeController.deleteByIdApi);
+     app.delete('/employeePayroll/delete/:employeeInfoId', tokenCheck.tokenChecker, employeeController.deleteByIdApi);
 }

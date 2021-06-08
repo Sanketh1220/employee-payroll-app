@@ -81,7 +81,7 @@ class EmployeeInfoService {
                 callBack(error, null);
             }
             else if (helperClass.bcryptDataCheck(employeeData.password, data.password)){
-                return callBack("Please enter correct password", null);
+                return callBack("Please enter correct password", error);
             }
             return callBack(null, token);
         });

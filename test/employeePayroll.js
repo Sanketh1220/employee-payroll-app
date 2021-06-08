@@ -312,7 +312,7 @@ describe('Employee Payroll API', () => {
      describe('DELETE /employeePayroll/:employeeId', () => {
         it('Given valid ID and token it should be able to delete employee info successfully by using ID to database', (done) => {
             chai.request(server)
-                .delete('/employeePayroll/60bb93fc010f66e020eecb84')
+                .delete('/employeePayroll/delete/60bb93fc010f66e020eecb84')
                 .set('token', token)
                 .end((error, res) => {
                     res.should.have.status(200);
@@ -329,7 +329,7 @@ describe('Employee Payroll API', () => {
 
         it('Given invalid ID and valid token it should not be able to delete employee info from database', (done) => {
             chai.request(server)
-                .delete('/employeePayroll/60bb93bfd719c8dfdbb430b')
+                .delete('/employeePayroll/delete/60bb93bfd719c8dfdbb430b')
                 .set('token', token)
                 .end((error, res) => {
                     res.should.have.status(200);

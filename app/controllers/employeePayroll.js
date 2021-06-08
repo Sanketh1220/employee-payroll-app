@@ -13,6 +13,8 @@ class EmployeeInfoController {
      * @param {*} res
      */
     registrationApi(req, res) {
+        console.log(req.body);
+        console.log(req.body);
         var dataValidation = validateData.validate(req.body);
         if (dataValidation.error) {
             return res.status(400).send({
