@@ -224,7 +224,7 @@ describe('Employee Payroll API', () => {
      describe('PUT /employeePayroll/:employeeId', () => {
         it('Given all valid data it should be able to get update or PUT employee info successfully by using ID to database', (done) => {
             chai.request(server)
-                .put('/employeePayroll/60bb93bfd719c8dfdbb43f0b')
+                .put('/employeePayroll/update/60bb93bfd719c8dfdbb43f0b')
                 .send(userInputs.employeePutPos)
                 .set('token', token)
                 .end((error, res) => {
@@ -242,7 +242,7 @@ describe('Employee Payroll API', () => {
 
         it('Given empty last name and all other valid data it not should be able to get update or PUT employee info and show message about last name is empty', (done) => {
             chai.request(server)
-                .put('/employeePayroll/60bb93bfd719c8dfdbb43f0b')
+                .put('/employeePayroll/update/60bb93bfd719c8dfdbb43f0b')
                 .send(userInputs.employeePutNeg)
                 .set('token', token)
                 .end((error, res) => {
@@ -258,7 +258,7 @@ describe('Employee Payroll API', () => {
 
         it('Given empty first name and all other valid data it not should be able to get update or PUT employee info and show message about first name is empty', (done) => {
             chai.request(server)
-                .put('/employeePayroll/60bb93bfd719c8dfdbb43f0b')
+                .put('/employeePayroll/update/60bb93bfd719c8dfdbb43f0b')
                 .send(userInputs.employeePutNegFirstName)
                 .set('token', token)
                 .end((error, res) => {
@@ -274,7 +274,7 @@ describe('Employee Payroll API', () => {
 
         it('Given invalid email and all other valid data it not should be able to get update or PUT employee info and show message about email is invalid', (done) => {
             chai.request(server)
-                .put('/employeePayroll/60bb93bfd719c8dfdbb43f0b')
+                .put('/employeePayroll/update/60bb93bfd719c8dfdbb43f0b')
                 .send(userInputs.employeePutNegEmail)
                 .set('token', token)
                 .end((error, res) => {
@@ -290,7 +290,7 @@ describe('Employee Payroll API', () => {
 
         it('Given short password and all other valid data it not should be able to get update or PUT employee info and show message password is short by length', (done) => {
             chai.request(server)
-                .put('/employeePayroll/60bb93bfd719c8dfdbb43f0b')
+                .put('/employeePayroll/update/60bb93bfd719c8dfdbb43f0b')
                 .send(userInputs.employeePutNegPassword)
                 .set('token', token)
                 .end((error, res) => {
