@@ -13,14 +13,35 @@
         "password": "Umeshwar@12"
     },
 
+    "employeeRegNegLastName": {
+        "firstName": "Ramesh",
+        "lastName": "",
+        "email": "umesh.yadav231@gmail.com",
+        "password": "Umeshwar@12"
+    },
+
+    "employeeRegNegEmail": {
+        "firstName": "Ramesh",
+        "lastName": "Yadav",
+        "email": "umesh.yadav231gmail.com",
+        "password": "Umeshwar@12"
+    },
+
+    "employeeRegNegPassword": {
+        "firstName": "Rushikesh", 
+        "lastName": "Tayade", 
+        "email": "rushikesh.tayade@gmail.com", 
+        "password": ""
+    },
+
     "employeeLogPos": {
         "email": "himanshu.uggar4506@gmail.com",
         "password": "himanshuK@34"
     },
 
     "employeeLogNeg": {
-        "email": "himanshu.uggar4506@gmail",
-        "password": "himanshuK@34"
+        "email": "himanshu.uggar4506@gmail.com",
+        "password": "himanshuK34"
     },
 
     "employeePutPos": {
@@ -35,6 +56,27 @@
         "lastName": "",
         "email": "sanketh.chigurupalli@gmail.com",
         "password": "Hey@345666"
+    },
+
+    "employeePutNegFirstName": {
+        "firstName": "",
+        "lastName": "Chigurupalli",
+        "email": "sanketh.chigurupalli@gmail.com",
+        "password": "Hey@345666"
+    },
+
+    "employeePutNegEmail": {
+        "firstName": "Sanketh", 
+        "lastName": "Chigurupalli", 
+        "email": "sanketh.chigurupalligmail.com", 
+        "password": "Hey@345666"
+    },
+
+    "employeePutNegPassword": {
+        "firstName": "Sanketh", 
+        "lastName": "Chigurupalli", 
+        "email": "sanketh.chigurupalli@gmail.com", 
+        "password": "Hey"
     },
 
     "employeeGetSinglePos": {
