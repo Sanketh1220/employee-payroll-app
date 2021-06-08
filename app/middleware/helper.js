@@ -1,6 +1,3 @@
-//requiring dotenv package so as to get access of env file
-require('dotenv').config();
-
 const jwt = require('jsonwebtoken');
 
 //requiring package bcrypt
