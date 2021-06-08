@@ -1,29 +1,34 @@
+require('dotenv').config();
 const express = require('express');
-
-// required config file
-const dbConfig = require('./config/databaseConfig');
-
-// creating express app
+const databaseConnection = require('./config/dbConfig');
+const swaggerUI = require('swagger-ui-express');
 const app = express();
+const logger = require('./config/logger');
+const swagger = require('./app/swagger/swagger.json');
+const swaggerJSDoc = require('swagger-jsdoc');
 
-require('./app/routes/employeeInfoRoutes.js')(app);
-
+databaseConnection();
 
 // parsing the requests of content
 app.use(express.urlencoded({
     extended: true
 }));
 
-// parsing requests of content type - json
 app.use(express.json());
 
-// defining a simple root statement
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swagger))
+
+//imported file from routes folder to use its functions here
+require('./app/routes/employeePayroll.js')(app);
+
+//defining a simple root statement
 app.get('/', (req, res) => {
     res.send("<h1>Hey! Welcome to employee payroll app.</h1>");
 });
 
-dbConfig().then(() => {
-    app.listen(3000, function () {
-        console.log("Server is up and running on port 3000")
-    });
+//declaring a port number for server to run
+ app.listen(PORT, () => {
+    logger.log("info", "Server is up and running");
 });
+
+module.exports = app;
